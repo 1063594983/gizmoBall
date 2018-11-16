@@ -9,13 +9,15 @@ public class ShapeBtn extends JButton {
 	protected BtnEventListener eventListener;
 
 	protected AbstractShape shape;
-
-	public ShapeBtn() {
+	
+	public ShapeBtn(String name) {
+		setText(name);
+		
 		eventListener = new BtnEventListener(this);
 		// µã»÷
 		this.addMouseListener(eventListener);
 		// ÍÏ×§
-		this.addMouseMotionListener(eventListener);
+		//this.addMouseMotionListener(eventListener);
 	}
 	
 	public AbstractShape getShape() {
