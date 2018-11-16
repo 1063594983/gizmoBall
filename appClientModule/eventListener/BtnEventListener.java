@@ -25,8 +25,10 @@ public class BtnEventListener extends MouseAdapter {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		AbstractShape shape;
+		//AbstractShape shape;
 		String shapename = this.btn.getShapeName();
+		AddShape.shapename = shapename;
+		AbstractShape shape;
 		switch(shapename) {
 			case "sb": 
 				shape = new RectangleCollisionBody(new Point(500, 500), Color.red);

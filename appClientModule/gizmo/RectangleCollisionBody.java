@@ -46,4 +46,10 @@ public class RectangleCollisionBody extends AbstractShape implements ICollisionB
 	public void setPosition(Point p) {
 		this.location = p;
 	}
+
+	@Override
+	public Point getPosition() {
+		
+		return this.location;
+	}
 }

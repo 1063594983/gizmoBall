@@ -97,7 +97,7 @@ public class ApplicationWindow extends JFrame {
 		panel.add(btnNewButton_2, gbc_btnNewButton_2);
 		* */
 		animationWindow = new AnimationWindow();
-		animationWindow.addShape(new RectangleCollisionBody(new Point(100, 100), Color.BLUE));
+		//animationWindow.addShape(new RectangleCollisionBody(new Point(100, 100), Color.BLUE));
 		manageWindow = new ManageWindow();
 		
 		JSplitPane jsp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, animationWindow, manageWindow);
