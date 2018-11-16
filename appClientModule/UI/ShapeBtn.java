@@ -7,12 +7,12 @@ import gizmo.AbstractShape;
 
 public class ShapeBtn extends JButton {
 	protected BtnEventListener eventListener;
-
+	private String name;
 	protected AbstractShape shape;
 	
-	public ShapeBtn(String name) {
+	public ShapeBtn(String name, AbstractShape shape) {
 		setText(name);
-		
+		this.name = name;
 		eventListener = new BtnEventListener(this);
 		// µã»÷
 		this.addMouseListener(eventListener);
@@ -22,5 +22,9 @@ public class ShapeBtn extends JButton {
 	
 	public AbstractShape getShape() {
 		return this.shape;
+	}
+	
+	public String getShapeName() {
+		return this.name;
 	}
 }

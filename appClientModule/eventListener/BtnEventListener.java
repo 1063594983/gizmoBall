@@ -1,12 +1,18 @@
 package eventListener;
 
+import java.awt.Color;
+import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 
+import org.omg.Messaging.SyncScopeHelper;
+
 import UI.ShapeBtn;
 import control.AddShape;
+import gizmo.AbstractShape;
+import gizmo.RectangleCollisionBody;
 
 
 public class BtnEventListener extends MouseAdapter {
@@ -19,7 +25,16 @@ public class BtnEventListener extends MouseAdapter {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		AddShape.setShape(this.btn.getShape());
+		AbstractShape shape;
+		String shapename = this.btn.getShapeName();
+		switch(shapename) {
+			case "sb": 
+				shape = new RectangleCollisionBody(new Point(500, 500), Color.red);
+			default: 
+				shape = new RectangleCollisionBody(new Point(e.getX(), e.getY()), Color.red);
+		}
+		AddShape.setShape(shape);
+		
 	}
 
 	@Override

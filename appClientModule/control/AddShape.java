@@ -5,7 +5,7 @@ import gizmo.AbstractShape;
 
 //µ¥ÀýÄ£Ê½
 public class AddShape {
-	static private AbstractShape shape;
+	static public AbstractShape shape;
 	
 	static private AnimationWindow animationwindow;
 	

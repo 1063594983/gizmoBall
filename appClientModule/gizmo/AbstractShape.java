@@ -5,8 +5,9 @@ import java.awt.Point;
 
 public abstract class AbstractShape {
 	//绘制图形
-	protected abstract void paint(Graphics g);
-	
+	public abstract void paint(Graphics g);
+	public abstract void setPosition(Point p);
 	//判断一个点是否在图形内
-	protected abstract boolean contains(Point p);
+	public abstract boolean contains(Point p);
+	
 }

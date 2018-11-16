@@ -14,9 +14,15 @@ public class RectangleCollisionBody extends AbstractShape implements ICollisionB
 
 	// ÑÕÉ«
 	Color color;
+	
+	public RectangleCollisionBody(Point location, Color color) {
+		this.location = location;
+		this.size = new Dimension(50, 50);
+		this.color = color;
+	}
 
 	@Override
-	protected void paint(Graphics g) {
+	public void paint(Graphics g) {
 		g.setColor(this.color);
 		g.fillRect(location.x, location.y, size.width, size.height);
 	}
@@ -32,7 +38,12 @@ public class RectangleCollisionBody extends AbstractShape implements ICollisionB
 	}
 
 	@Override
-	protected boolean contains(Point p) {
+	public boolean contains(Point p) {
 		return false;
+	}
+
+	@Override
+	public void setPosition(Point p) {
+		this.location = p;
 	}
 }
