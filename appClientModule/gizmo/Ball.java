@@ -6,7 +6,7 @@ import java.awt.Point;
 
 import UI.AnimationWindow;
 
-public class Ball extends AbstractBall {
+public class Ball {
 	
 	//Œª÷√
 	public Point location;
@@ -26,12 +26,11 @@ public class Ball extends AbstractBall {
 	public Ball(AnimationWindow win) {
 		this.location = new Point(400, 400);
 		this.radius = 6;
-		this.velocity = new Point(5, 5);
+		this.velocity = new Point(1, 1);
 		this.color = Color.RED;
 		this.win = win;
 	}
 
-	@Override
 	public void move() {
 		this.location.translate(velocity.x, velocity.y);
 		if(this.location.x <= this.radius) {
@@ -53,10 +52,19 @@ public class Ball extends AbstractBall {
 		
 	}
 
-	@Override
 	public void paint(Graphics g) {
 		g.setColor(this.color);
 		g.fillOval(location.x, location.y, 2 * radius, 2 * radius);
+	}
+
+	public int getRadius() {
+		// TODO Auto-generated method stub
+		return this.radius;
+	}
+
+	public Point getPosition() {
+		// TODO Auto-generated method stub
+		return this.location;
 	}
 
 }

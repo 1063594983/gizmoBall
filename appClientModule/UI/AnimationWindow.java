@@ -18,9 +18,9 @@ public class AnimationWindow extends JComponent {
 	private ArrayList<AbstractShape> shapes;
 	
 	//小球
-	private AbstractBall ball;
+	private Ball ball;
 	
-	private int FPS = 60;
+	private int FPS = 100;
 	
 	//定时器
 	private Timer timer;
@@ -48,6 +48,9 @@ public class AnimationWindow extends JComponent {
 	
 	//update函数
 	public void update() {
+		for(int i = 0; i < shapes.size(); i++) {
+			((ICollisionBody) this.shapes.get(i)).handleCollision(ball);
+		}
 		repaint();
 	}
 

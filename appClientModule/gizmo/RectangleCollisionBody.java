@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Rectangle;
 
 public class RectangleCollisionBody extends AbstractShape implements ICollisionBody {
 	// Œª÷√
@@ -28,18 +29,31 @@ public class RectangleCollisionBody extends AbstractShape implements ICollisionB
 	}
 
 	@Override
-	public boolean isCollision(AbstractBall ball) {
-		return false;
+	public boolean isCollision(Ball ball) {
+		if(new Rectangle(location.x - ball.radius, location.y - ball.radius, size.width + 2 * ball.radius, size.height + 2 * ball.radius).contains(ball.location)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
-	public void changeDirect(AbstractBall ball) {
-
+	public void changeDirect(Ball ball) {
+		if(Math.abs(ball.location.x - location.x) <= ball.radius || Math.abs(ball.location.x - location.x - size.width) <= ball.radius) {
+			ball.velocity.y *= -1;
+		}
+		if(Math.abs(ball.location.y - location.y) <= ball.radius || Math.abs(ball.location.y - location.y - size.height) <= ball.radius) {
+			ball.velocity.x *= -1;
+		}
 	}
 
 	@Override
 	public boolean contains(Point p) {
-		return false;
+		if(new Rectangle(location.x, location.y, size.width, size.height).contains(p)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
@@ -49,7 +63,6 @@ public class RectangleCollisionBody extends AbstractShape implements ICollisionB
 
 	@Override
 	public Point getPosition() {
-		
 		return this.location;
 	}
 }
