@@ -20,6 +20,8 @@ public class Ball {
 	//ÑÕÉ«
 	public Color color;
 	
+	//¼ÆÊýÆ÷
+	private int count;
 	
 	AnimationWindow win;
 	
@@ -29,10 +31,10 @@ public class Ball {
 		this.velocity = new Point(5, 5);
 		this.color = Color.RED;
 		this.win = win;
+		this.count = 0;
 	}
 
 	public void move() {
-		velocity.y += 1;
 		this.location.translate(velocity.x, velocity.y);
 		if(this.location.x <= this.radius) {
 			this.location.x = this.radius;
@@ -49,6 +51,11 @@ public class Ball {
 		if(this.location.y >= this.win.getHeight() - this.radius) {
 			this.location.y = this.win.getHeight() - this.radius;
 			this.velocity.y *= -1;
+		}
+		this.count++;
+		if(this.count == 5) {
+			velocity.y += 1;
+			this.count = 0;
 		}
 		
 	}

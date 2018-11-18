@@ -7,18 +7,11 @@ import java.awt.Point;
 import java.awt.Rectangle;
 
 public class CircleCollisionBody extends AbstractShape implements ICollisionBody{
-	// 圆心位置
-	Point location;
-
-	// 大小
-	Dimension size;
-
-	// 颜色
-	Color color;
 	
 	public CircleCollisionBody() {
 		this.size = new Dimension(50, 50);
 		this.name = "circle";
+		this.color = new Color(128, 255, 0);
 	}
 	
 	public CircleCollisionBody(Point location, Color color) {
@@ -31,7 +24,7 @@ public class CircleCollisionBody extends AbstractShape implements ICollisionBody
 	@Override
 	public void paint(Graphics g) {
 		g.setColor(this.color);
-		g.fillOval(location.x, location.y, 50, 50);
+		g.fillOval(location.x - this.size.width / 2, location.y - this.size.height / 2, this.size.width, this.size.height);
 	}
 
 	@Override
@@ -47,23 +40,16 @@ public class CircleCollisionBody extends AbstractShape implements ICollisionBody
 
 	@Override
 	public boolean contains(Point p) {
-		return false;
-
+		if(new Rectangle(location.x - this.size.width / 2, location.y - this.size.height / 2, 
+				size.width, size.height).contains(p)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
-	public void setPosition(Point p) {
-		this.location = p;
-	}
-
-	@Override
-	public Point getPosition() {
-		return this.location;
-	}
-
-	@Override
-	public void changeSize(int step) {
-		this.size.width += step;
-		this.size.height += step;
+	public CircleCollisionBody getNewInstance() {
+		return new CircleCollisionBody();
 	}	
 }

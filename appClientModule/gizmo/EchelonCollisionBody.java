@@ -4,34 +4,32 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Polygon;
 import java.awt.Rectangle;
 
 public class EchelonCollisionBody extends AbstractShape implements ICollisionBody {
-	// 位置
-	Point location;
-
-	// 大小
-	Dimension size;
-
-	// 颜色
-	Color color;
 	
 	public EchelonCollisionBody() {
-		this.size = new Dimension(50, 50);
-		this.name = "rectangle";
+		this.size = new Dimension(40, 40);
+		this.name = "echelon";
+		this.color = new Color(102, 178, 255);
 	}
 	
 	public EchelonCollisionBody(Point location, Color color) {
 		this.location = location;
-		this.size = new Dimension(50, 50);
+		this.size = new Dimension(40, 40);
 		this.color = color;
-		this.name = "rectangle";
+		this.name = "echelon";
 	}
 
 	@Override
 	public void paint(Graphics g) {
-		g.setColor(this.color);
-		g.fillRect(location.x, location.y, size.width, size.height);
+		int[] arr1 = {location.x - size.width / 2, location.x + size.width / 2, 
+				location.x + size.width * 3 / 2, location.x - size.width * 3 / 2};
+		int[] arr2 = {location.y - size.height / 2, location.y - size.height / 2,
+				location.y + size.height / 2, location.y + size.height / 2};
+ 		g.setColor(this.color);
+		g.fillPolygon(arr1, arr2, 4);
 	}
 
 	@Override
@@ -55,7 +53,11 @@ public class EchelonCollisionBody extends AbstractShape implements ICollisionBod
 
 	@Override
 	public boolean contains(Point p) {
-		if(new Rectangle(location.x, location.y, size.width, size.height).contains(p)) {
+		int[] arr1 = {location.x - size.width / 2, location.x + size.width / 2, 
+				location.x + size.width * 3 / 2, location.x - size.width * 3 / 2};
+		int[] arr2 = {location.y - size.height / 2, location.y - size.height / 2,
+				location.y + size.height / 2, location.y + size.height / 2};
+		if(new Polygon(arr1, arr2, 4).contains(p)) {
 			return true;
 		} else {
 			return false;
@@ -63,18 +65,8 @@ public class EchelonCollisionBody extends AbstractShape implements ICollisionBod
 	}
 
 	@Override
-	public void setPosition(Point p) {
-		this.location = p;
-	}
-
-	@Override
-	public Point getPosition() {
-		return this.location;
-	}
-
-	@Override
-	public void changeSize(int step) {
-		this.size.width += step;
-		this.size.height += step;
+	public EchelonCollisionBody getNewInstance() {
+		// TODO Auto-generated method stub
+		return new EchelonCollisionBody();
 	}
 }

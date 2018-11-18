@@ -8,6 +8,15 @@ import gizmo.AbstractShape;
 public class ChangeSizeCommand extends Command {
 	
 	private int step = 10;
+	class ChangeMode {
+		static final int BIGGER = 0;
+		static final int SMALLER = 1;
+	}
+	private int mode;
+	public ChangeSizeCommand(int mode) {
+		// TODO Auto-generated constructor stub
+		this.mode = mode;
+	}
 	
 	public void setStep(int step) {
 		this.step = step;
@@ -25,7 +34,8 @@ public class ChangeSizeCommand extends Command {
 		ArrayList <AbstractShape> shapes = AnimationWindow.getInstance().getShapes();
 		for(int i = 0; i < shapes.size(); i++) {
 			if(shapes.get(i).contains(this.shape.getPosition())) {
-				shapes.get(i).changeSize(step);
+				if(mode == ChangeMode.BIGGER) shapes.get(i).beBigger(step);
+				else shapes.get(i).beSmaller(step);
 				break;
 			}
 		}

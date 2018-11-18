@@ -7,18 +7,11 @@ import java.awt.Point;
 import java.awt.Rectangle;
 
 public class RectangleCollisionBody extends AbstractShape implements ICollisionBody {
-	// 位置
-	Point location;
-
-	// 大小
-	Dimension size;
-
-	// 颜色
-	Color color;
 	
 	public RectangleCollisionBody() {
 		this.size = new Dimension(50, 50);
 		this.name = "rectangle";
+		this.color = new Color(248, 206, 204);
 	}
 	
 	public RectangleCollisionBody(Point location, Color color) {
@@ -63,18 +56,7 @@ public class RectangleCollisionBody extends AbstractShape implements ICollisionB
 	}
 
 	@Override
-	public void setPosition(Point p) {
-		this.location = p;
-	}
-
-	@Override
-	public Point getPosition() {
-		return this.location;
-	}
-
-	@Override
-	public void changeSize(int step) {
-		this.size.width += step;
-		this.size.height += step;
+	public RectangleCollisionBody getNewInstance() {
+		return new RectangleCollisionBody();
 	}
 }

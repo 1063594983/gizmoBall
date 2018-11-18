@@ -11,6 +11,7 @@ public class AddShapeCommand extends Command {
 	
 	public void execute() {
 		AbstractShape newShape;
+		/*
 		switch(this.shape.name) {
 		case "rectangle": {
 			newShape = new RectangleCollisionBody(this.shape.getPosition(), Color.RED);
@@ -26,6 +27,9 @@ public class AddShapeCommand extends Command {
 			break;
 		}
 		}
+		*/
+		newShape = this.shape.getNewInstance();
+		newShape.setPosition(this.shape.getPosition());
 		AnimationWindow.getInstance().addShape(newShape);
 	}
 	
