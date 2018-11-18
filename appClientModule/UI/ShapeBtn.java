@@ -1,5 +1,7 @@
 package UI;
 
+import java.awt.Color;
+
 import javax.swing.JButton;
 
 import eventListener.BtnEventListener;
@@ -16,6 +18,7 @@ public class ShapeBtn extends JButton {
 		eventListener = new BtnEventListener(this);
 		// µã»÷
 		this.addMouseListener(eventListener);
+		this.setBackground(Color.WHITE);
 		// ÍÏ×§
 		//this.addMouseMotionListener(eventListener);
 	}

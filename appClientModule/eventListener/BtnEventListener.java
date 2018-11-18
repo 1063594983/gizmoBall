@@ -30,7 +30,7 @@ public class BtnEventListener extends MouseAdapter {
 		AddShape.shapename = shapename;
 		AbstractShape shape;
 		switch(shapename) {
-			case "sb": 
+			case "square": 
 				shape = new RectangleCollisionBody(new Point(500, 500), Color.red);
 			default: 
 				shape = new RectangleCollisionBody(new Point(e.getX(), e.getY()), Color.red);

@@ -24,7 +24,7 @@ public class AddShape {
 	public static void execute() {
 		AbstractShape newshape;
 		switch(shapename) {
-		case "sb": 
+		case "square": 
 			newshape = new RectangleCollisionBody(new Point(500, 500), Color.red);
 			newshape.setPosition(shape.getPosition());
 		default: 
