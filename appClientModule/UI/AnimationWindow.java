@@ -86,11 +86,11 @@ public class AnimationWindow extends JComponent {
 	
 	//updateº¯Êý
 	public void update() {
+		ball.move();
 		for(int i = 0; i < shapes.size(); i++) {
 			((ICollisionBody) this.shapes.get(i)).handleCollision(ball);
 		}
 		repaint();
-		ball.move();
 	}
 	
 	//»æÖÆ

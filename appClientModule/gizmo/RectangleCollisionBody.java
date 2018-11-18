@@ -29,21 +29,48 @@ public class RectangleCollisionBody extends AbstractShape implements ICollisionB
 
 	@Override
 	public boolean isCollision(Ball ball) {
-		if(new Rectangle(location.x - ball.radius, location.y - ball.radius, size.width + 2 * ball.radius, size.height + 2 * ball.radius).contains(ball.location)) {
+		int[] x = {location.x, location.x + size.width, location.x +size.width, location.x};
+		int[] y = {location.y, location.y, location.y + size.height, location.y + size.height};
+		if (ball.location.y <= y[0] && ball.location.y + ball.radius >= y[0] && ball.location.x + ball.radius >= x[0] && ball.location.x - ball.radius <= x[1]) {
+			ball.location.y = y[0] - ball.radius;
 			return true;
-		} else {
-			return false;
-		}
+        }
+        else if (ball.location.y >= y[2] && ball.location.y - ball.radius <= y[2] && ball.location.x + ball.radius >= x[0] && ball.location.x - ball.radius <= x[1]) {
+        	ball.location.y = y[2] + ball.radius;
+			return true;
+        }
+        else if (ball.location.x <= x[0] && ball.location.x + ball.radius >= x[0] && ball.location.y + ball.radius >= y[0] && ball.location.y - ball.radius <= y[3]) {
+        	ball.location.x = x[0] - ball.radius;
+        	return true;
+        }
+        else if (ball.location.x >= x[2] && ball.location.x - ball.radius <= x[2] && ball.location.y + ball.radius >= y[0] && ball.location.y - ball.radius <= y[3]) {
+        	ball.location.x = x[2] + ball.radius;
+        	return true;
+        }
+        else {
+        	return false;
+        }
 	}
 
 	@Override
 	public void changeDirect(Ball ball) {
-		if(Math.abs(ball.location.x - location.x) <= ball.radius || Math.abs(ball.location.x - location.x - size.width) <= ball.radius) {
+		int[] x = {location.x, location.x + size.width, location.x +size.width, location.x};
+		int[] y = {location.y, location.y, location.y + size.height, location.y + size.height};
+		if (ball.location.y <= y[0] && ball.location.y + ball.radius >= y[0] && ball.location.x + ball.radius >= x[0] && ball.location.x - ball.radius <= x[1]) {
 			ball.velocity.y *= -1;
-		}
-		if(Math.abs(ball.location.y - location.y) <= ball.radius || Math.abs(ball.location.y - location.y - size.height) <= ball.radius) {
-			ball.velocity.x *= -1;
-		}
+        }
+        else if (ball.location.y >= y[2] && ball.location.y - ball.radius <= y[2] && ball.location.x + ball.radius >= x[0] && ball.location.x - ball.radius <= x[1]) {
+			ball.velocity.y *= -1;
+        }
+        else if (ball.location.x <= x[0] && ball.location.x + ball.radius >= x[0] && ball.location.y + ball.radius >= y[0] && ball.location.y - ball.radius <= y[3]) {
+        	ball.velocity.x *= -1;
+        }
+        else if (ball.location.x >= x[2] && ball.location.x - ball.radius <= x[2] && ball.location.y + ball.radius >= y[0] && ball.location.y - ball.radius <= y[3]) {
+        	ball.velocity.x *= -1;
+        }
+        else {
+        	
+        }
 	}
 
 	@Override

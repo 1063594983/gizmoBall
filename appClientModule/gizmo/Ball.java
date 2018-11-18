@@ -26,7 +26,7 @@ public class Ball {
 	AnimationWindow win;
 	
 	public Ball(AnimationWindow win) {
-		this.location = new Point(400, 400);
+		this.location = new Point(50, 50);
 		this.radius = 6;
 		this.velocity = new Point(5, 5);
 		this.color = Color.RED;
@@ -35,6 +35,7 @@ public class Ball {
 	}
 
 	public void move() {
+//		System.out.println("ball vx:" + this.velocity.x + ",   vy:" + this.velocity.y);
 		this.location.translate(velocity.x, velocity.y);
 		if(this.location.x <= this.radius) {
 			this.location.x = this.radius;
