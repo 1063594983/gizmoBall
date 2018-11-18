@@ -54,7 +54,7 @@ public class AnimationEventListener extends MouseAdapter implements MouseMotionL
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		System.out.println("µã»÷");
+		//System.out.println("µã»÷");
 		//animationWindow
 		/*
 		AddShape.setAnimationWindow(animationWindow);
