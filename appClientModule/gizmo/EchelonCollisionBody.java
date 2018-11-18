@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-public class RectangleCollisionBody extends AbstractShape implements ICollisionBody {
+public class EchelonCollisionBody extends AbstractShape implements ICollisionBody {
 	// Î»ÖÃ
 	Point location;
 
@@ -16,12 +16,12 @@ public class RectangleCollisionBody extends AbstractShape implements ICollisionB
 	// ÑÕÉ«
 	Color color;
 	
-	public RectangleCollisionBody() {
+	public EchelonCollisionBody() {
 		this.size = new Dimension(50, 50);
 		this.name = "rectangle";
 	}
 	
-	public RectangleCollisionBody(Point location, Color color) {
+	public EchelonCollisionBody(Point location, Color color) {
 		this.location = location;
 		this.size = new Dimension(50, 50);
 		this.color = color;

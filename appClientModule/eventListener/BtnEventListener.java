@@ -11,8 +11,10 @@ import org.omg.Messaging.SyncScopeHelper;
 
 import UI.ShapeBtn;
 import control.AddShape;
+import control.MainControl;
 import gizmo.AbstractShape;
 import gizmo.RectangleCollisionBody;
+import gizmo.TriangleCollisionBody;
 
 
 public class BtnEventListener extends MouseAdapter {
@@ -26,16 +28,29 @@ public class BtnEventListener extends MouseAdapter {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		//AbstractShape shape;
+		/*
 		String shapename = this.btn.getShapeName();
 		AddShape.shapename = shapename;
 		AbstractShape shape;
 		switch(shapename) {
 			case "square": 
 				shape = new RectangleCollisionBody(new Point(500, 500), Color.red);
+				break;
+			case "tri":
+				//System.out.println("hello");
+				shape = new TriangleCollisionBody(new Point(500, 500), Color.red);
+				break;
 			default: 
 				shape = new RectangleCollisionBody(new Point(e.getX(), e.getY()), Color.red);
 		}
-		AddShape.setShape(shape);
+		*/
+		//AddShape.setShape(shape);
+		//shape = this.btn.getShape();
+		//this.btn.command.shape = shape;
+		//MainControl.setCommand(this.btn.command);
+		//MainControl.action();
+		//System.out.println("hello");
+		MainControl.setCommand(this.btn.command);
 		
 	}
 

@@ -61,7 +61,7 @@ public class ApplicationWindow extends JFrame {
 		this.add(manageWindow, gbc_panel_1);
 		*/
 		
-		animationWindow = new AnimationWindow();
+		animationWindow = AnimationWindow.getInstance();
 		manageWindow = new ManageWindow();
 		
 		JSplitPane jsp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, animationWindow, manageWindow);
