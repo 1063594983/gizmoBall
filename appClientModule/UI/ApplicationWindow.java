@@ -96,7 +96,7 @@ public class ApplicationWindow extends JFrame {
 		gbc_btnNewButton_2.gridy = 2;
 		panel.add(btnNewButton_2, gbc_btnNewButton_2);
 		* */
-		animationWindow = new AnimationWindow();
+		animationWindow = AnimationWindow.getInstance();
 		//animationWindow.addShape(new RectangleCollisionBody(new Point(100, 100), Color.BLUE));
 		manageWindow = new ManageWindow();
 		

@@ -16,10 +16,16 @@ public class RectangleCollisionBody extends AbstractShape implements ICollisionB
 	// ÑÕÉ«
 	Color color;
 	
+	public RectangleCollisionBody() {
+		this.size = new Dimension(50, 50);
+		this.name = "rectangle";
+	}
+	
 	public RectangleCollisionBody(Point location, Color color) {
 		this.location = location;
 		this.size = new Dimension(50, 50);
 		this.color = color;
+		this.name = "rectangle";
 	}
 
 	@Override
@@ -64,5 +70,11 @@ public class RectangleCollisionBody extends AbstractShape implements ICollisionB
 	@Override
 	public Point getPosition() {
 		return this.location;
+	}
+
+	@Override
+	public void changeSize(int step) {
+		this.size.width += step;
+		this.size.height += step;
 	}
 }

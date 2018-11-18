@@ -28,11 +28,22 @@ public class AnimationWindow extends JComponent {
 	//监听器
 	AnimationEventListener eventListener;
 	
-	public AnimationWindow() {
+	//单例
+	private static AnimationWindow animationWindow = new AnimationWindow();
+	
+	//获得单例
+	public static AnimationWindow getInstance() {
+		return AnimationWindow.animationWindow;
+	}
+	
+	private AnimationWindow() {
 		shapes = new ArrayList<>();
 		ball = new Ball(this);
 		eventListener = new AnimationEventListener(this);
+		//添加点击
 		this.addMouseListener(eventListener);
+		//添加拖拽
+		this.addMouseMotionListener(eventListener);
 		timer = new Timer(1000 / FPS, eventListener);
 		timer.start();
 	}
@@ -59,6 +70,10 @@ public class AnimationWindow extends JComponent {
 	//将物体加入画板
 	public void addShape(AbstractShape shape) {
 		this.shapes.add(shape);
+	}
+	
+	public ArrayList <AbstractShape> getShapes() {
+		return this.shapes;
 	}
 
 }
