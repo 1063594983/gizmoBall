@@ -8,9 +8,11 @@ public interface ICollisionBody {
 	public abstract void changeDirect(Ball ball);
 	
 	//´¦ÀíÅö×²
-	public default void handleCollision(Ball ball) {
+	public default boolean handleCollision(Ball ball) {
 		if(isCollision(ball)) {
-			changeDirect(ball);
+			//changeDirect(ball);
+			return true;
 		}
+		return false;
 	}
 }

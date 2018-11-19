@@ -88,7 +88,8 @@ public class AnimationWindow extends JComponent {
 	public void update() {
 		ball.move();
 		for(int i = 0; i < shapes.size(); i++) {
-			((ICollisionBody) this.shapes.get(i)).handleCollision(ball);
+			 ((ICollisionBody) this.shapes.get(i)).handleCollision(ball);
+				//break;
 		}
 		repaint();
 	}

@@ -28,7 +28,7 @@ public class Ball {
 	public Ball(AnimationWindow win) {
 		this.location = new Point(50, 50);
 		this.radius = 6;
-		this.velocity = new Point(5, 5);
+		this.velocity = new Point(2, 2);
 		this.color = Color.RED;
 		this.win = win;
 		this.count = 0;
@@ -54,9 +54,15 @@ public class Ball {
 			this.velocity.y *= -1;
 		}
 		this.count++;
-		if(this.count == 5) {
+		if(this.count == 3) {
+			if(velocity.y >= 10) {
+				
+			} else {
+				velocity.y += 1;		
+			}
 			velocity.y += 1;
 			this.count = 0;
+			
 		}
 		
 	}

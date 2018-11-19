@@ -24,23 +24,33 @@ public class TriangleCollisionBody extends AbstractShape implements ICollisionBo
 		this.color = color;
 	}
 
+	/*
 	@Override
 	public boolean isCollision(Ball ball) {
 		count++;
 		if (count < 5) return false;
 		int[] x = {location.x, location.x + size.width, location.x};
 		int[] y = {location.y, location.y, location.y + size.height};
+		int X = ball.location.x;
+		int Y = ball.location.y;
+		int vx = ball.velocity.x;
+		int vy = ball.velocity.y;
 		for (int i = 0; i <= 2; i++) {
 			int j = (i + 1) % 3;
 			if (x[i] == x[j]) {
-				if (ball.location.x  < x[i] && ball.location.x + ball.radius >= x[i] && ((ball.location.y + ball.radius >= y[i] && ball.location.y - ball.radius <= y[j]) || (ball.location.y + ball.radius >= y[j] && ball.location.y - ball.radius <= y[i]))) {
+				if (ball.location.x  < x[i] && ball.location.x + ball.radius >= x[i]
+						&& ((ball.location.y + ball.radius >= y[i] 
+								&& ball.location.y - ball.radius <= y[j]) || (ball.location.y + ball.radius >= y[j] 
+										&& ball.location.y - ball.radius <= y[i]))) {
 					count = 0;
 					ball.location.x = x[i] - ball.radius;
 					return true;
 	    		}
 			}
 			else if (y[i] == y[j]) {
-				if (ball.location.y > y[i] && ball.location.y - ball.radius <= y[j] && ((ball.location.x + ball.radius >= x[i] && ball.location.x - ball.radius <= x[j]) || (ball.location.x + ball.radius >= x[j] && ball.location.x - ball.radius <= x[i]))) {
+				if (ball.location.y > y[i] && ball.location.y - ball.radius <= y[j] 
+						&& ((ball.location.x + ball.radius >= x[i] && ball.location.x - ball.radius <= x[j]) 
+								|| (ball.location.x + ball.radius >= x[j] && ball.location.x - ball.radius <= x[i]))) {
 					count = 0;
 					ball.location.y = y[j] + ball.radius;
 					return true;
@@ -62,7 +72,57 @@ public class TriangleCollisionBody extends AbstractShape implements ICollisionBo
 		}
 		return false;
 	}
-
+	*/
+	
+	
+	
+	@Override
+	public boolean isCollision(Ball ball) {
+		int[] x = {location.x, location.x + size.width, location.x};
+		int[] y = {location.y, location.y, location.y + size.height};
+		int X = ball.location.x;
+		int Y = ball.location.y;
+		int vx = ball.velocity.x;
+		int vy = ball.velocity.y;
+		
+		if(Y <= y[0] && Y + vy > y[0] && X + ball.radius + vx >= x[0] && X - ball.radius + vx <= x[1]) {
+			ball.location.y = y[0] - ball.radius;
+			//if(ball.velocity.y > 0) ball.velocity.y --;
+			//else ball.velocity.y ++;
+			if(ball.velocity.y == 0 || ball.velocity.x == 0) {
+				ball.velocity.y++;
+				ball.velocity.x++;
+			}
+			ball.velocity.y *= -1;
+			return true;
+		} else if (X <= x[0] && X + vx > x[0] && Y + ball.radius + vy >= y[0] && Y - ball.radius + vy <= y[2]) {
+			ball.location.x = x[0] - ball.radius;
+			if(ball.velocity.y == 0 || ball.velocity.x == 0) {
+				ball.velocity.y++;
+				ball.velocity.x++;
+			}
+			//if(ball.velocity.y > 0) ball.velocity.y --;
+			//else ball.velocity.y ++;
+			ball.velocity.x *= -1;
+			return true;
+        }  else if(Y > -X + x[1] + y[1] && Y + vy > X + vx + ball.radius + y[1] - x[1] 
+        		&& Y + vy < X + vx + ball.radius + y[2] - x[2]
+        				&& Y + vy < -X - vx - ball.radius + x[1] + y[1]) {
+        	ball.location.x = (x[1] + x[2]) / 2;
+        	ball.location.y = (y[1] + y[2]) / 2 + ball.radius;
+        	ball.velocity.x = -vy;
+        	ball.velocity.y = -vx;
+        	return true;
+        }
+		return false;
+	}
+	
+	
+	
+	
+	
+	
+	
 	@Override
 	public void changeDirect(Ball ball) {
 		int[] x = {location.x, location.x + size.width, location.x};
