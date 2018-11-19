@@ -16,6 +16,9 @@ public class Line {
 		     k = (p1.y * 1.0 - p2.y * 1.0) / (p1.x - p2.x);
 		     b = p1.y - k * p1.x;
 		}
+		else {
+			k = Integer.MAX_VALUE;
+		}
 	}
 	
 	public Point getIntersectPoint(Line line) {
@@ -45,9 +48,17 @@ public class Line {
 		int y = getIntersectPointVertical(line).y;
 		//if(x == -1 && y == -1) return false;
 		if(y  <= Math.max(this.p1.y, this.p2.y) && y >= Math.min(this.p1.y, this.p2.y) 
-				&& y <= Math.max(line.p1.y, line.p2.y) && y >= Math.min(line.p1.y, line.p2.y))
-				return true;
-		
+				&& y <= Math.max(line.p1.y, line.p2.y) && y >= Math.min(line.p1.y, line.p2.y)) {
+			if (line.p1.y == line.p2.y && line.p1.y == y) {
+				if ((line.p1.x >= x && line.p2.x <= x) || (line.p1.x <= x && line.p2.x >= x)) {
+					System.out.println("ball: "+x + "   " + y);
+					System.out.println("line.k: "+line.k);
+					return true;
+				}
+				else return false;
+			}
+			return true;
+		}
 		/*
 		System.out.println(x + " " + y);
 		System.out.println(this.p1.y + " " + this.p2.y);

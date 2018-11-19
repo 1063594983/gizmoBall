@@ -9,14 +9,14 @@ import java.awt.Rectangle;
 public class RectangleCollisionBody extends AbstractShape implements ICollisionBody {
 	
 	public RectangleCollisionBody() {
-		this.size = new Dimension(50, 50);
+		this.size = new Dimension(300, 300);
 		this.name = "rectangle";
 		this.color = new Color(248, 206, 204);
 	}
 	
 	public RectangleCollisionBody(Point location, Color color) {
 		this.location = location;
-		this.size = new Dimension(50, 50);
+		this.size = new Dimension(300, 300);
 		this.color = color;
 		this.name = "rectangle";
 	}
@@ -78,12 +78,14 @@ public class RectangleCollisionBody extends AbstractShape implements ICollisionB
 			ball.velocity.y *= -1;
 			return true;
 		} else if(left.isIntersectVertical(ballLine)) {
+			System.out.println("ball.v: " + ball.velocity.x + "   " + ball.velocity.y);
 			System.out.println("left cnm");
 			ball.location.y = left.getIntersectPointVertical(ballLine).y;
 			ball.location.x = left.getIntersectPointVertical(ballLine).x - ball.radius;
 			ball.velocity.x *= -1;
 			return true;
 		} else if(right.isIntersectVertical(ballLine)) {
+			System.out.println("ball.v: " + ball.velocity.x + "   " + ball.velocity.y);
 			System.out.println("right cnm");
 			ball.location.y = right.getIntersectPointVertical(ballLine).y;
 			ball.location.x = right.getIntersectPointVertical(ballLine).x + ball.radius;
