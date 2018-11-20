@@ -9,6 +9,8 @@ public class Line {
 	public double b;
 	public int X;
 	public boolean verticalFlag;
+	public boolean isVertical;
+	public boolean isHorizontal;
 	
 	public Line (Point p1, Point p2) {
 		this.p1 = p1;
@@ -16,14 +18,23 @@ public class Line {
 		if(p1.x != p2.x) {
 		     k = (p1.y * 1.0 - p2.y * 1.0) / (p1.x - p2.x);
 		     b = p1.y - k * p1.x;
+		     isVertical = false;
 		}
 		else {
 			k = Integer.MAX_VALUE;
 			X = p1.x;
+			isVertical = true;
+			
+		}
+		if(p1.y != p2.y) {
+			isHorizontal = false;
+		} else {
+			isHorizontal = true;
 		}
 	}
 	
 	public Point getIntersectPoint(Line line) {
+		
 		if(line.k == Integer.MAX_VALUE) {
 			return new Point(line.X, (int)(k * line.X + b));
 		}

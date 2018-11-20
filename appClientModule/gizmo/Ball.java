@@ -28,13 +28,15 @@ public class Ball {
 	public Ball(AnimationWindow win) {
 		this.location = new Point(50, 50);
 		this.radius = 6;
-		this.velocity = new Point(2, 2);
+		this.velocity = new Point(5, 0);
 		this.color = Color.RED;
 		this.win = win;
 		this.count = 0;
 	}
 
 	public void move() {
+		//System.out.println("x : " + location.x + " y :" + location.y);
+		//System.out.println("vx : " + velocity.x + " vy :" + velocity.y);
 //		System.out.println("ball vx:" + this.velocity.x + ",   vy:" + this.velocity.y);
 		this.location.translate(velocity.x, velocity.y);
 		if(this.location.x <= this.radius) {
@@ -55,10 +57,10 @@ public class Ball {
 		}
 		this.count++;
 		if(this.count == 3) {
-			if(velocity.y >= 5) {
+			if(velocity.y >= 15) {
 				
 			} else {
-				velocity.y += 1;		
+				//velocity.y += 1;		
 			}
 			this.count = 0;
 			

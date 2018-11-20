@@ -37,6 +37,7 @@ public class CircleCollisionBody extends AbstractShape implements ICollisionBody
 		double precision = 10;
 		if (Math.abs(dis - ball.radius - this.size.width / 2) < precision && dis < ball.radius + this.size.width / 2) {
 			count = 0;
+			changeDirect(ball);
 			return true;
 		}
 		return false;

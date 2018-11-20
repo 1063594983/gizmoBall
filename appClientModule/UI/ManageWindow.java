@@ -36,10 +36,10 @@ public class ManageWindow extends JPanel {
 		ShapeBtn smaller = new ShapeBtn("Smaller",  new RectangleCollisionBody(), new ChangeSizeCommand(1));
 		ShapeBtn bigger = new ShapeBtn("Bigger", new RectangleCollisionBody(), new ChangeSizeCommand(0));
 		ShapeBtn drag = new ShapeBtn("Drag",  new RectangleCollisionBody(), new DragCommand());
-		rectangle.setIcon(new ImageIcon("D:\\OOAD\\lab\\gizmoBall\\Rectangle.png"));
-		triangle.setIcon(new ImageIcon("D:\\OOAD\\lab\\gizmoBall\\Triangle.png"));
-		echelon.setIcon(new ImageIcon("D:\\OOAD\\lab\\gizmoBall\\Echelon.png"));
-		circle.setIcon(new ImageIcon("D:\\OOAD\\lab\\gizmoBall\\Circle.png"));
+		rectangle.setIcon(new ImageIcon("Rectangle.png"));
+		triangle.setIcon(new ImageIcon("Triangle.png"));
+		echelon.setIcon(new ImageIcon("Echelon.png"));
+		circle.setIcon(new ImageIcon("Circle.png"));
 		
 		play.addActionListener(new ActionListener() {
 			@Override
