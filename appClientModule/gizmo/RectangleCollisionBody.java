@@ -77,18 +77,18 @@ public class RectangleCollisionBody extends AbstractShape implements ICollisionB
 			ball.location.y = buttom.getIntersectPoint(ballLine).y + ball.radius;
 			ball.velocity.y *= -1;
 			return true;
-		} else if(left.isIntersectVertical(ballLine)) {
+		} else if(left.isIntersect(ballLine)) {
 			System.out.println("ball.v: " + ball.velocity.x + "   " + ball.velocity.y);
 			System.out.println("left");
-			ball.location.y = left.getIntersectPointVertical(ballLine).y;
-			ball.location.x = left.getIntersectPointVertical(ballLine).x - ball.radius;
+			ball.location.y = left.getIntersectPoint(ballLine).y;
+			ball.location.x = left.getIntersectPoint(ballLine).x - ball.radius;
 			ball.velocity.x *= -1;
 			return true;
-		} else if(right.isIntersectVertical(ballLine)) {
+		} else if(right.isIntersect(ballLine)) {
 			System.out.println("ball.v: " + ball.velocity.x + "   " + ball.velocity.y);
 			System.out.println("right");
-			ball.location.y = right.getIntersectPointVertical(ballLine).y;
-			ball.location.x = right.getIntersectPointVertical(ballLine).x + ball.radius;
+			ball.location.y = right.getIntersectPoint(ballLine).y;
+			ball.location.x = right.getIntersectPoint(ballLine).x + ball.radius;
 			ball.velocity.x *= -1;
 			return true;
 		}
