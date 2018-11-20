@@ -55,12 +55,11 @@ public class Ball {
 		}
 		this.count++;
 		if(this.count == 3) {
-			if(velocity.y >= 10) {
+			if(velocity.y >= 5) {
 				
 			} else {
 				velocity.y += 1;		
 			}
-			velocity.y += 1;
 			this.count = 0;
 			
 		}

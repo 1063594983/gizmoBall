@@ -75,7 +75,7 @@ public class TriangleCollisionBody extends AbstractShape implements ICollisionBo
 	*/
 	
 	
-	
+	/*
 	@Override
 	public boolean isCollision(Ball ball) {
 		int[] x = {location.x, location.x + size.width, location.x};
@@ -116,8 +116,40 @@ public class TriangleCollisionBody extends AbstractShape implements ICollisionBo
         }
 		return false;
 	}
-	
-	
+	*/
+	public boolean isCollision(Ball ball) {
+		int[] x = {location.x, location.x + size.width, location.x};
+		int[] y = {location.y, location.y, location.y + size.height};
+		int X = ball.location.x;
+		int Y = ball.location.y;
+		int vx = ball.velocity.x;
+		int vy = ball.velocity.y;
+		
+		Line top = new Line(new Point(x[0], y[0]), new Point(x[1], y[1]));
+		Line left = new Line(new Point(x[0], y[0]), new Point(x[2], y[2]));
+		Line hypotenuse = new Line(new Point(x[1], y[1]), new Point(x[2], y[2]));
+		Line ballLine = new Line(new Point(X, Y), new Point(X + vx, Y + vy));
+		
+		if(top.isIntersect(ballLine)) {
+			ball.location.x = top.getIntersectPoint(ballLine).x;
+			ball.location.y = top.getIntersectPoint(ballLine).y - ball.radius;
+			ball.velocity.y *= -1;
+			return true;
+		} else if(left.isIntersectVertical(ballLine)) {
+			ball.location.y = left.getIntersectPointVertical(ballLine).y;
+			ball.location.x = left.getIntersectPointVertical(ballLine).x - ball.radius;
+			ball.velocity.x *= -1;
+			return true;
+		} else if(hypotenuse.isIntersect(ballLine)) {
+			ball.location.y = hypotenuse.getIntersectPoint(ballLine).y;
+			ball.location.x = hypotenuse.getIntersectPoint(ballLine).x + ball.radius;
+			ball.velocity.x = -vy;
+			ball.velocity.y = -vx;
+			return true;
+		}
+		
+		return false;
+	}
 	
 	
 	

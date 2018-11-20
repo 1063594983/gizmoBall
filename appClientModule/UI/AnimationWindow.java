@@ -20,7 +20,7 @@ public class AnimationWindow extends JComponent {
 	//小球
 	private Ball ball;
 	
-	private int FPS = 100;
+	private int FPS = 200;
 	
 	//定时器
 	private Timer timer;
@@ -53,6 +53,9 @@ public class AnimationWindow extends JComponent {
 	}
 	
 	public void setMode(boolean mode) {
+		if(this.mode == mode) {
+			return ;
+		}
 		this.mode = mode;
 		if(this.mode == true) {
 			//添加点击
