@@ -26,21 +26,23 @@ public class Ball {
 	AnimationWindow win;
 	
 	public Ball(AnimationWindow win) {
-		this.location = new Point(50, 50);
-		this.radius = 6;
-		this.velocity = new Point(5, 0);
+		this.location = new Point(10, 10);
+		this.radius = 10;
+		this.velocity = new Point(8, 8);
 		this.color = Color.RED;
 		this.win = win;
 		this.count = 0;
 	}
 
 	public void move() {
-		//System.out.println("x : " + location.x + " y :" + location.y);
-		//System.out.println("vx : " + velocity.x + " vy :" + velocity.y);
-//		System.out.println("ball vx:" + this.velocity.x + ",   vy:" + this.velocity.y);
 		this.location.translate(velocity.x, velocity.y);
 		if(this.location.x <= this.radius) {
 			this.location.x = this.radius;
+			if(this.velocity.x <= -3) {
+				this.velocity.x += 3;
+			} else {
+				this.velocity.x = 0;
+			}
 			this.velocity.x *= -1;
 		}
 		if(this.location.x >= this.win.getWidth() - this.radius) {
@@ -53,24 +55,45 @@ public class Ball {
 		}
 		if(this.location.y >= this.win.getHeight() - this.radius) {
 			this.location.y = this.win.getHeight() - this.radius;
+			if(this.velocity.y >= 4) {
+				this.velocity.y -= 4;
+			} else {
+				this.velocity.y = 0;
+			}
+			if(this.velocity.x >= 0) {
+				this.velocity.x--;
+			} else {
+				this.velocity.x++;
+			}
 			this.velocity.y *= -1;
+			this.velocity.y -= 10;
+			if(this.velocity.x >= 0) {
+				this.velocity.x += 5;
+			} else {
+				this.velocity.x -= 5;
+			}
 		}
+		
+		
 		this.count++;
 		if(this.count == 3) {
-			if(velocity.y >= 15) {
+			if(velocity.y >= 30) {
 				
 			} else {
-				//velocity.y += 1;		
+				velocity.y += 3;		
 			}
 			this.count = 0;
 			
 		}
 		
+		
+		
+		
 	}
 
 	public void paint(Graphics g) {
 		g.setColor(this.color);
-		g.fillOval(location.x, location.y, 2 * radius, 2 * radius);
+		g.fillOval(location.x - radius, location.y - radius, 2 * radius, 2 * radius);
 	}
 
 	public int getRadius() {

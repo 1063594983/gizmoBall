@@ -133,18 +133,21 @@ public class TriangleCollisionBody extends AbstractShape implements ICollisionBo
 		if(top.isIntersect(ballLine)) {
 			ball.location.x = top.getIntersectPoint(ballLine).x;
 			ball.location.y = top.getIntersectPoint(ballLine).y - ball.radius;
+			
 			ball.velocity.y *= -1;
 			return true;
-		} else if(left.isIntersectVertical(ballLine)) {
-			ball.location.y = left.getIntersectPointVertical(ballLine).y;
-			ball.location.x = left.getIntersectPointVertical(ballLine).x - ball.radius;
+		} else if(left.isIntersect(ballLine)) {
+			ball.location.y = left.getIntersectPoint(ballLine).y;
+			ball.location.x = left.getIntersectPoint(ballLine).x - ball.radius;
+
 			ball.velocity.x *= -1;
 			return true;
 		} else if(hypotenuse.isIntersect(ballLine)) {
 			ball.location.y = hypotenuse.getIntersectPoint(ballLine).y;
-			ball.location.x = hypotenuse.getIntersectPoint(ballLine).x + ball.radius;
+			ball.location.x = hypotenuse.getIntersectPoint(ballLine).x;
 			ball.velocity.x = -vy;
 			ball.velocity.y = -vx;
+			
 			return true;
 		}
 		

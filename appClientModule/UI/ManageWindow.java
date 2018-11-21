@@ -18,6 +18,7 @@ import gizmo.CircleCollisionBody;
 import gizmo.EchelonCollisionBody;
 import control.AddShapeCommand;
 import control.ChangeSizeCommand;
+import control.DeleteCommand;
 import control.DragCommand;
 import control.MainControl;
 import control.RunCommand;
@@ -33,7 +34,7 @@ public class ManageWindow extends JPanel {
 		ShapeBtn echelon = new ShapeBtn("",  new EchelonCollisionBody(), new AddShapeCommand());
 		ShapeBtn play = new ShapeBtn("Play",  new RectangleCollisionBody(), new RunCommand(0));
 		ShapeBtn pause = new ShapeBtn("Pause",  new RectangleCollisionBody(), new RunCommand(1));
-		ShapeBtn smaller = new ShapeBtn("Smaller",  new RectangleCollisionBody(), new ChangeSizeCommand(1));
+		ShapeBtn smaller = new ShapeBtn("Delete",  new RectangleCollisionBody(), new DeleteCommand());
 		ShapeBtn bigger = new ShapeBtn("Bigger", new RectangleCollisionBody(), new ChangeSizeCommand(0));
 		ShapeBtn drag = new ShapeBtn("Drag",  new RectangleCollisionBody(), new DragCommand());
 		rectangle.setIcon(new ImageIcon("Rectangle.png"));

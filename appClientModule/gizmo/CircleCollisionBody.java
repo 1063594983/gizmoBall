@@ -22,6 +22,12 @@ public class CircleCollisionBody extends AbstractShape implements ICollisionBody
 		this.color = color;
 		this.name = "circle";
 	}
+	
+	public CircleCollisionBody(Point location, Dimension size) {
+		this.location = location;
+		this.size = size;
+		this.name = "circle";
+	}
 
 	@Override
 	public void paint(Graphics g) {
@@ -65,5 +71,6 @@ public class CircleCollisionBody extends AbstractShape implements ICollisionBody
 	@Override
 	public CircleCollisionBody getNewInstance() {
 		return new CircleCollisionBody();
-	}	
+	}
+
 }

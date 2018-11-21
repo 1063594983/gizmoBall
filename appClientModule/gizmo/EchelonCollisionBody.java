@@ -89,24 +89,28 @@ public class EchelonCollisionBody extends AbstractShape implements ICollisionBod
 		if(top.isIntersect(ballLine)) {
 			ball.location.x = top.getIntersectPoint(ballLine).x;
 			ball.location.y = top.getIntersectPoint(ballLine).y - ball.radius;
+
 			ball.velocity.y *= -1;
 			return true;
 		} else if(buttom.isIntersect(ballLine)) {
 			ball.location.x = buttom.getIntersectPoint(ballLine).x;
-			ball.location.y = buttom.getIntersectPoint(ballLine).y - ball.radius;
+			ball.location.y = buttom.getIntersectPoint(ballLine).y + ball.radius;
+
 			ball.velocity.y *= -1;
 			return true;
 		} else if(leftHypotenuse.isIntersect(ballLine)) {
-			ball.location.y = leftHypotenuse.getIntersectPoint(ballLine).y;
+			ball.location.y = leftHypotenuse.getIntersectPoint(ballLine).y - ball.radius;
 			ball.location.x = leftHypotenuse.getIntersectPoint(ballLine).x - ball.radius;
 			ball.velocity.x = -vy;
 			ball.velocity.y = -vx;
+
 			return true;
 		} else if(rightHypotenuse.isIntersect(ballLine)) {
-			ball.location.y = rightHypotenuse.getIntersectPoint(ballLine).y;
+			ball.location.y = rightHypotenuse.getIntersectPoint(ballLine).y - ball.radius;
 			ball.location.x = rightHypotenuse.getIntersectPoint(ballLine).x + ball.radius;
 			ball.velocity.x = vy;
 			ball.velocity.y = vx;
+
 			return true;
 		}
 		

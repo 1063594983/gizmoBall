@@ -54,15 +54,6 @@ public class ItemEventListener extends MouseAdapter implements MouseMotionListen
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		//System.out.println("µã»÷");
-		//animationWindow
-		/*
-		AddShape.setAnimationWindow(animationWindow);
-		if(AddShape.shape != null) {
-			AddShape.shape.setPosition(new Point(e.getX(), e.getY()));
-			AddShape.execute();
-		}
-		*/
 		if(MainControl.getCommand() != null) {
 			MainControl.getCommand().shape.setPosition(new Point(e.getX(), e.getY()));
 			MainControl.action();
@@ -87,10 +78,24 @@ public class ItemEventListener extends MouseAdapter implements MouseMotionListen
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		//this.shape.setPosition(new Point(this.shape.getPosition().x + e.getX() - oldPosition.x, this.shape.getPosition().y + e.getY() - oldPosition.y));
-		if(this.shape != null) {
+		if(this.shape != null && MainControl.getCommand() != null) {
 			//this.shape.setPosition(new Point(e.getX(), e.getY()));
 			Point p = this.shape.getPosition();
-			this.shape.setPosition(new Point(p.x + (e.getX() - oldPosition.x), p.y + (e.getY() - oldPosition.y)));
+			Dimension d = this.shape.getSize();
+			switch (MainControl.getCommand().name) {
+			case "size": {
+				this.shape.setSize(new Dimension(d.width + (e.getX() - oldPosition.x), d.height + (e.getY() - oldPosition.y)));
+				break;
+			}
+			case "drag" : {
+				this.shape.setPosition(new Point(p.x + (e.getX() - oldPosition.x), p.y + (e.getY() - oldPosition.y)));
+				break;
+			}
+			default : {
+				
+			}
+			}
+			
 		}
 		oldPosition.x = e.getX();
 		oldPosition.y = e.getY();

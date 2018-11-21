@@ -20,7 +20,7 @@ public class AnimationWindow extends JComponent {
 	//Ð¡Çò
 	private Ball ball;
 	
-	private int FPS = 200;
+	private int FPS = 60;
 	
 	//¶¨Ê±Æ÷
 	private Timer timer;
@@ -111,6 +111,10 @@ public class AnimationWindow extends JComponent {
 	
 	public ArrayList <AbstractShape> getShapes() {
 		return this.shapes;
+	}
+	
+	public void setShapes(ArrayList<AbstractShape> shapes) {
+		this.shapes = shapes;
 	}
 
 }

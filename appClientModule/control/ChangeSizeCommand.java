@@ -16,6 +16,7 @@ public class ChangeSizeCommand extends Command {
 	public ChangeSizeCommand(int mode) {
 		// TODO Auto-generated constructor stub
 		this.mode = mode;
+		this.name = "size";
 	}
 	
 	public void setStep(int step) {

@@ -17,12 +17,25 @@ public abstract class AbstractShape {
 	//位置
 	protected Point location;
 	
+	public AbstractShape() {
+		
+	}
+	
+	public AbstractShape(Point location, Dimension size) {
+		this.location = location;
+		this.size = size;
+	}
+	
 	//绘制图形
 	public abstract void paint(Graphics g);
 	
 	//设置位置
 	public void setPosition(Point p) {
 		this.location = p;
+	}
+	//设置大小
+	public void setSize(Dimension size) {
+		this.size = size;
 	}
 	
 	//获取位置
@@ -50,6 +63,16 @@ public abstract class AbstractShape {
 	//设置颜色
 	public void setColor(Color color) {
 		this.color = color;
+	}
+	
+	//获取字符串
+	public String getString() {
+		String str = this.name + " " + this.location.x + " " + this.location.y + " " + this.size.width + " " + this.size.height + "\n";
+		return str;
+	}
+	
+	public Dimension getSize() {
+		return this.size;
 	}
 	
 }
