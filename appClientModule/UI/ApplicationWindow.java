@@ -3,6 +3,7 @@ package UI;
 import java.awt.Dimension;
 import java.awt.Point;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JSplitPane;
 
 
@@ -24,11 +25,14 @@ public class ApplicationWindow extends JFrame {
 		animationWindow = AnimationWindow.getInstance();
 		manageWindow = new ManageWindow();
 		
-		
-		JSplitPane jsp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, animationWindow, manageWindow);
+		JLabel testjb = new JLabel("dsfsd");
+		JSplitPane jsp3 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, manageWindow, testjb);
+		jsp3.setDividerLocation(650);
+		JSplitPane jsp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, animationWindow, jsp3);
 		jsp.setDividerLocation(500);
 		JSplitPane jsp2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, new MyMenu(this), jsp);
 		jsp2.setDividerLocation(40);
+		
 		this.add(jsp2);
 	
 	}

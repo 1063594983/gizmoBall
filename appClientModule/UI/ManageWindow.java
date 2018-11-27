@@ -31,20 +31,20 @@ public class ManageWindow extends JPanel {
 	public ManageWindow() {
 
 		ShapeBtn rectangle = new ShapeBtn("", new RectangleCollisionBody(), new AddShapeCommand());
-		ShapeBtn triangle = new ShapeBtn("",  new TriangleCollisionBody(), new AddShapeCommand());
-		ShapeBtn circle = new ShapeBtn("",  new CircleCollisionBody(), new AddShapeCommand());
-		ShapeBtn echelon = new ShapeBtn("",  new EchelonCollisionBody(), new AddShapeCommand());
-		ShapeBtn pipe1 = new ShapeBtn("",  new EchelonCollisionBody(), new AddShapeCommand());
-		ShapeBtn pipe2 = new ShapeBtn("",  new EchelonCollisionBody(), new AddShapeCommand());
+		ShapeBtn triangle = new ShapeBtn("", new TriangleCollisionBody(), new AddShapeCommand());
+		ShapeBtn circle = new ShapeBtn("", new CircleCollisionBody(), new AddShapeCommand());
+		ShapeBtn echelon = new ShapeBtn("", new EchelonCollisionBody(), new AddShapeCommand());
+		ShapeBtn pipe1 = new ShapeBtn("", new EchelonCollisionBody(), new AddShapeCommand());
+		ShapeBtn pipe2 = new ShapeBtn("", new EchelonCollisionBody(), new AddShapeCommand());
 		ShapeBtn darkhole = new ShapeBtn("ÎüÊÕÆ÷",  new DarkholeCollisionBody(), new AddShapeCommand());
 		ShapeBtn baffle = new ShapeBtn("", new EchelonCollisionBody(), new AddShapeCommand());
-		ShapeBtn play = new ShapeBtn("Play",  new RectangleCollisionBody(), new RunCommand(0));
-		ShapeBtn pause = new ShapeBtn("Pause",  new RectangleCollisionBody(), new RunCommand(1));
-		ShapeBtn delete = new ShapeBtn("Delete",  new RectangleCollisionBody(), new DeleteCommand());
+		ShapeBtn play = new ShapeBtn("Play", new RectangleCollisionBody(), new RunCommand(0));
+		ShapeBtn pause = new ShapeBtn("Pause", new RectangleCollisionBody(), new RunCommand(1));
+		ShapeBtn delete = new ShapeBtn("Delete", new RectangleCollisionBody(), new DeleteCommand());
 		ShapeBtn rotate = new ShapeBtn("Rotate", new RectangleCollisionBody(), new DeleteCommand());
-		ShapeBtn setBall = new ShapeBtn("SetBall",  new RectangleCollisionBody(), new AddBallCommand());
+		ShapeBtn setBall = new ShapeBtn("SetBall", new RectangleCollisionBody(), new AddBallCommand());
 		ShapeBtn resize = new ShapeBtn("Resize", new RectangleCollisionBody(), new ChangeSizeCommand(0));
-		ShapeBtn drag = new ShapeBtn("Drag",  new RectangleCollisionBody(), new DragCommand());
+		ShapeBtn drag = new ShapeBtn("Drag", new RectangleCollisionBody(), new DragCommand());
 		rectangle.setIcon(new ImageIcon("Rectangle.png"));
 		triangle.setIcon(new ImageIcon("Triangle.png"));
 		echelon.setIcon(new ImageIcon("Echelon.png"));
