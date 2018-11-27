@@ -17,6 +17,7 @@ public class Line {
 			b = p1.y - k * p1.x;
 			isVertical = false;
 		} else {
+			k = Integer.MAX_VALUE;
 			isVertical = true;
 
 		}
@@ -41,6 +42,7 @@ public class Line {
 	}
 
 	public boolean isIntersect(Line line) {
+		
 		if (this.isVertical && line.isVertical) {
 			return false;
 		}
