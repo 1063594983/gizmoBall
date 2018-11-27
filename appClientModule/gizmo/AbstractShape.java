@@ -7,12 +7,14 @@ import java.awt.Point;
 
 public abstract class AbstractShape {
 	public String name;
-	
-	public int mode;
+
+	public int mode = 0;
 	
 	public int[] arr1;
 	
 	public int[] arr2;
+	protected int[] x = new int[10];
+	protected int[] y = new int[10];
 	
 	//颜色
 	protected Color color;
@@ -23,6 +25,9 @@ public abstract class AbstractShape {
 	//位置
 	protected Point location;
 	
+	//旋转
+	protected int rotateCount;
+	
 	public AbstractShape() {
 		
 	}
@@ -30,15 +35,14 @@ public abstract class AbstractShape {
 	public AbstractShape(Point location, Dimension size) {
 		this.location = location;
 		this.size = size;
+		this.rotateCount = 0;
 	}
 	
 	//绘制图形
 	public abstract void paint(Graphics g);
 	
 	//顺时针旋转90度
-	public void rotate() {
-		this.mode = (this.mode + 1) % 4;
-	}
+	public abstract void rotate();
 	
 	//设置位置
 	public void setPosition(Point p) {
@@ -67,12 +71,17 @@ public abstract class AbstractShape {
 	
 	//获取字符串
 	public String getString() {
-		String str = this.name + " " + this.location.x + " " + this.location.y + " " + this.size.width + " " + this.size.height + "\n";
+		String str = this.name + " " + this.location.x + " " + this.location.y + " " + this.size.width + " " 
+	+ this.size.height + " " + this.mode + "\n";
 		return str;
 	}
 	
 	public Dimension getSize() {
 		return this.size;
+	}
+	
+	public void setMode(int mode) {
+		this.mode = mode;
 	}
 	
 }

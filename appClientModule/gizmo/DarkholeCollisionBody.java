@@ -6,27 +6,27 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-public class CircleCollisionBody extends AbstractShape implements ICollisionBody{
+public class DarkholeCollisionBody extends AbstractShape implements ICollisionBody{
 	
 	int count = 5;
 	
-	public CircleCollisionBody() {
+	public DarkholeCollisionBody() {
 		this.size = new Dimension(50, 50);
-		this.name = "circle";
-		this.color = new Color(128, 255, 0);
+		this.name = "darkhole";
+		this.color = new Color(0, 0, 0);
 	}
 	
-	public CircleCollisionBody(Point location, Color color) {
+	public DarkholeCollisionBody(Point location, Color color) {
 		this.location = location;
 		this.size = new Dimension(50, 50);
 		this.color = color;
-		this.name = "circle";
+		this.name = "darkhole";
 	}
 	
-	public CircleCollisionBody(Point location, Dimension size) {
+	public DarkholeCollisionBody(Point location, Dimension size) {
 		this.location = location;
 		this.size = size;
-		this.name = "circle";
+		this.name = "darkhole";
 	}
 
 	@Override
@@ -52,9 +52,7 @@ public class CircleCollisionBody extends AbstractShape implements ICollisionBody
 	public void changeDirect(Ball ball) {
 		double angle1 = Math.atan((double)(ball.location.x - location.x)/(double)(ball.location.y - location.y));
 		double vx = (double) ball.velocity.x, vy = (double) ball.velocity.y;
-		//double转为int，会损失精度，即为考虑摩擦
-		ball.velocity.x = (int) (vx * (Math.cos(angle1) * Math.cos(angle1) - Math.sin(angle1) * Math.sin(angle1)) - 2 * vy * Math.sin(angle1) * Math.cos(angle1));
-		ball.velocity.y = (int) (vy * (Math.sin(angle1) * Math.sin(angle1) - Math.cos(angle1) * Math.cos(angle1)) - 2 * vx * Math.sin(angle1) * Math.cos(angle1));
+		System.out.println("GG");	
 	}
 
 	@Override
@@ -68,13 +66,12 @@ public class CircleCollisionBody extends AbstractShape implements ICollisionBody
 	}
 
 	@Override
-	public CircleCollisionBody getNewInstance() {
-		return new CircleCollisionBody();
+	public DarkholeCollisionBody getNewInstance() {
+		return new DarkholeCollisionBody();
 	}
 	
-	@Override
 	public void rotate() {
-
+		
 	}
 
 }

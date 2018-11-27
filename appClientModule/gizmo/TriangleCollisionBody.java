@@ -10,7 +10,7 @@ public class TriangleCollisionBody extends AbstractShape implements ICollisionBo
 	
 	int count = 5;
 	
-	int[][] arr = {{0, 1, 1, 0}, {-1, 0, 0, 1}, {0, -1, -1, 0}, {1, 0, 0, -1}};
+	int[][] arr = {{1, 0, 0, 1}, {0, -1, 1, 0}, {-1, 0, 0, -1}, {0, 1, -1, 0}};
 	int[][] tmpArr = {{1, -1, -1, 1, -1, -1}, {-1, 1, 1, -1, 1, 1}, {1, -1, -1, 1, -1, -1}, {-1, 1, 1, -1, 1, 1}};
 	
 	public TriangleCollisionBody() {
@@ -20,7 +20,7 @@ public class TriangleCollisionBody extends AbstractShape implements ICollisionBo
 		this.color = new Color(204, 204, 0);
 		this.mode = 0;
 		arr1 = new int[3];
-		arr2 = new int[3];
+		arr2 = new int[3];	
 	}
 	
 	public TriangleCollisionBody(Point location, Color color) {
@@ -31,21 +31,15 @@ public class TriangleCollisionBody extends AbstractShape implements ICollisionBo
 	}
 
 	public boolean isCollision(Ball ball) {
-		/*
-		int[] x = {location.x, location.x + size.width, location.x};
-		int[] y = {location.y, location.y, location.y + size.height};
-		*/
-		int[] x = {arr1[0], arr1[2], arr1[1]};
-		int[] y = {arr2[0], arr2[2], arr2[1]};
 		
 		int X = ball.location.x;
 		int Y = ball.location.y;
 		int vx = ball.velocity.x;
 		int vy = ball.velocity.y;
 		
-		Line top = new Line(new Point(x[0], y[0]), new Point(x[1], y[1]));
-		Line left = new Line(new Point(x[0], y[0]), new Point(x[2], y[2]));
-		Line hypotenuse = new Line(new Point(x[1], y[1]), new Point(x[2], y[2]));
+		Line top = new Line(new Point(arr1[0], arr2[0]), new Point(arr1[1], arr2[1]));
+		Line left = new Line(new Point(arr1[0], arr2[0]), new Point(arr1[2], arr2[2]));
+		Line hypotenuse = new Line(new Point(arr1[1], arr2[1]), new Point(arr1[2], arr2[2]));
 		Line ballLine = new Line(new Point(X, Y), new Point(X + vx, Y + vy));
 		
 		if(top.isIntersect(ballLine)) {
@@ -97,5 +91,10 @@ public class TriangleCollisionBody extends AbstractShape implements ICollisionBo
 	@Override
 	public TriangleCollisionBody getNewInstance() {
 		return new TriangleCollisionBody();
+	}
+	
+	@Override
+	public void rotate() {
+		this.mode = (this.mode + 1) % 4;
 	}
 }

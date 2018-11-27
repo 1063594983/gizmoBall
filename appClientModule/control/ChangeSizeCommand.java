@@ -35,8 +35,7 @@ public class ChangeSizeCommand extends Command {
 		ArrayList <AbstractShape> shapes = AnimationWindow.getInstance().getShapes();
 		for(int i = 0; i < shapes.size(); i++) {
 			if(shapes.get(i).contains(this.shape.getPosition())) {
-				if(mode == ChangeMode.BIGGER) shapes.get(i).beBigger(step);
-				else shapes.get(i).beSmaller(step);
+				
 				break;
 			}
 		}

@@ -8,6 +8,7 @@ public interface ICollisionBody {
 	public default boolean handleCollision(Ball ball) {
 		if(isCollision(ball)) {
 			//changeDirect(ball);
+			/*
 			if(ball.velocity.y > 0) {
 				ball.velocity.y--;
 			} else if(ball.velocity.y < 0) {
@@ -19,6 +20,7 @@ public interface ICollisionBody {
 			} else if(ball.velocity.x < 0) {
 				ball.velocity.x++;
 			}
+			*/
 
 			return true;
 		}

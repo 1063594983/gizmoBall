@@ -31,7 +31,7 @@ public class Ball {
 	public Ball(AnimationWindow win) {
 		this.location = new Point(100, 100);
 		this.radius = 8;
-		this.velocity = new Point(5, 10);
+		this.velocity = new Point(10, 10);
 		this.color = Color.RED;
 		this.win = win;
 		this.count = 0;

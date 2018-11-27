@@ -15,9 +15,12 @@ import java.util.Iterator;
 import UI.AnimationWindow;
 import gizmo.AbstractShape;
 import gizmo.CircleCollisionBody;
+import gizmo.DarkholeCollisionBody;
 import gizmo.EchelonCollisionBody;
 import gizmo.RectangleCollisionBody;
+import gizmo.RightPipe;
 import gizmo.TriangleCollisionBody;
+import gizmo.VerticalPipe;
 
 public class OpenAndSaveControl {
 	
@@ -60,6 +63,7 @@ public class OpenAndSaveControl {
 				int y = Integer.parseInt(strs[2]);
 				int width = Integer.parseInt(strs[3]);
 				int height = Integer.parseInt(strs[4]);
+				int mode = Integer.parseInt(strs[5]);
 				Point p = new Point(x, y);
 				Dimension d = new Dimension(width, height); 
 				switch (name) {
@@ -67,6 +71,7 @@ public class OpenAndSaveControl {
 					AbstractShape shape = new CircleCollisionBody();
 					shape.setPosition(p);
 					shape.setSize(d);
+					shape.setMode(mode);
 					shapes.add(shape);
 					break;
 				}
@@ -74,6 +79,7 @@ public class OpenAndSaveControl {
 					AbstractShape shape = new EchelonCollisionBody();
 					shape.setPosition(p);
 					shape.setSize(d);
+					shape.setMode(mode);
 					shapes.add(shape);
 					break;
 				}
@@ -81,13 +87,31 @@ public class OpenAndSaveControl {
 					AbstractShape shape = new RectangleCollisionBody();
 					shape.setPosition(p);
 					shape.setSize(d);
+					shape.setMode(mode);
 					shapes.add(shape);
 					break;
 				}
-				case "triangle" : {
-					AbstractShape shape = new TriangleCollisionBody();
+				case "darkhole" : {
+					AbstractShape shape = new DarkholeCollisionBody();
 					shape.setPosition(p);
 					shape.setSize(d);
+					shape.setMode(mode);
+					shapes.add(shape);
+					break;
+				}
+				case "RightPipe" : {
+					AbstractShape shape = new RightPipe();
+					shape.setPosition(p);
+					shape.setSize(d);
+					shape.setMode(mode);
+					shapes.add(shape);
+					break;
+				}
+				case "VerticalPipe" : {
+					AbstractShape shape = new VerticalPipe();
+					shape.setPosition(p);
+					shape.setSize(d);
+					shape.setMode(mode);
 					shapes.add(shape);
 					break;
 				}

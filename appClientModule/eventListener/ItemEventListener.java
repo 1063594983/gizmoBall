@@ -60,7 +60,6 @@ public class ItemEventListener extends MouseAdapter implements MouseMotionListen
 				this.shape = null;
 			}
 		}
-		System.out.println(MainControl.getCommand().name);
 		if(MainControl.getCommand() != null) {
 			switch (MainControl.getCommand().name) {
 			case "add" : {
@@ -79,6 +78,10 @@ public class ItemEventListener extends MouseAdapter implements MouseMotionListen
 				MainControl.getCommand().shape = this.shape;
 				break;
 			}
+//			case "drag" : {
+//				this.shape.rotate();
+//				break;
+//			}
 			default : {
 				
 			}
