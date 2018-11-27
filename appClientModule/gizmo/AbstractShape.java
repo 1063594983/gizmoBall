@@ -8,6 +8,9 @@ import java.awt.Point;
 public abstract class AbstractShape {
 	public String name;
 	
+	protected int[] x = new int[10];
+	protected int[] y = new int[10];
+	
 	//颜色
 	protected Color color;
 	
@@ -17,6 +20,9 @@ public abstract class AbstractShape {
 	//位置
 	protected Point location;
 	
+	//旋转
+	protected int rotateCount;
+	
 	public AbstractShape() {
 		
 	}
@@ -24,6 +30,7 @@ public abstract class AbstractShape {
 	public AbstractShape(Point location, Dimension size) {
 		this.location = location;
 		this.size = size;
+		this.rotateCount = 0;
 	}
 	
 	//绘制图形
@@ -73,6 +80,11 @@ public abstract class AbstractShape {
 	
 	public Dimension getSize() {
 		return this.size;
+	}
+	
+	//旋转
+	public void rotate() {
+		
 	}
 	
 }

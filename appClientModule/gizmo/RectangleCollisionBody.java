@@ -9,14 +9,14 @@ import java.awt.Rectangle;
 public class RectangleCollisionBody extends AbstractShape implements ICollisionBody {
 	
 	public RectangleCollisionBody() {
-		this.size = new Dimension(50, 50);
+		this.size = new Dimension(100, 50);
 		this.name = "rectangle";
 		this.color = new Color(248, 206, 204);
 	}
 	
 	public RectangleCollisionBody(Point location, Color color) {
 		this.location = location;
-		this.size = new Dimension(50, 50);
+		this.size = new Dimension(100, 50);
 		this.color = color;
 		this.name = "rectangle";
 	}
@@ -128,6 +128,15 @@ public class RectangleCollisionBody extends AbstractShape implements ICollisionB
         else {
         	
         }
+	}
+	
+	//Ðý×ª
+	public void rotate() {
+		location.x = location.x + size.width/2 - size.height/2;
+		location.y = location.y + size.height/2 - size.width/2;
+		int temp = size.width;
+		size.width = size.height;
+		size.height = temp;
 	}
 
 	@Override

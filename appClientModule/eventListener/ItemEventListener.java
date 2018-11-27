@@ -74,6 +74,10 @@ public class ItemEventListener extends MouseAdapter implements MouseMotionListen
 				AnimationWindow.getInstance().setBallLocation(new Point(e.getX(), e.getY()));
 				break;
 			}
+//			case "drag" : {
+//				this.shape.rotate();
+//				break;
+//			}
 			default : {
 				
 			}
