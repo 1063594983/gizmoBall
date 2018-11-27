@@ -1,6 +1,5 @@
 package eventListener;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -11,12 +10,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
-
 import UI.AnimationWindow;
-import control.AddShape;
 import control.MainControl;
 import gizmo.AbstractShape;
-import gizmo.RectangleCollisionBody;
 
 public class ItemEventListener extends MouseAdapter implements MouseMotionListener, ActionListener, KeyListener {
 	
@@ -54,8 +50,35 @@ public class ItemEventListener extends MouseAdapter implements MouseMotionListen
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		ArrayList <AbstractShape> shapes = animationWindow.getShapes();
+		for(int i = 0; i < shapes.size(); i++) {
+			if(shapes.get(i).contains(new Point(e.getX(), e.getY()))) {
+				this.shape = shapes.get(i);
+				break;
+			}
+			if(i == shapes.size() - 1) {
+				this.shape = null;
+			}
+		}
 		if(MainControl.getCommand() != null) {
-			MainControl.getCommand().shape.setPosition(new Point(e.getX(), e.getY()));
+			switch (MainControl.getCommand().name) {
+			case "add" : {
+				MainControl.getCommand().shape.setPosition(new Point(e.getX(), e.getY()));
+				break;
+			}
+			case "delete" : {
+				MainControl.getCommand().shape = this.shape;
+				break;
+			}
+			case "addBall" : {
+				AnimationWindow.getInstance().setBallLocation(new Point(e.getX(), e.getY()));
+				break;
+			}
+			default : {
+				
+			}
+			}
+			
 			MainControl.action();
 		}	
 	}

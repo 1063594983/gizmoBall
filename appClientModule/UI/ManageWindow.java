@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import gizmo.AbstractShape;
 import gizmo.CircleCollisionBody;
 import gizmo.EchelonCollisionBody;
+import control.AddBallCommand;
 import control.AddShapeCommand;
 import control.ChangeSizeCommand;
 import control.DeleteCommand;
@@ -34,8 +35,8 @@ public class ManageWindow extends JPanel {
 		ShapeBtn echelon = new ShapeBtn("",  new EchelonCollisionBody(), new AddShapeCommand());
 		ShapeBtn play = new ShapeBtn("Play",  new RectangleCollisionBody(), new RunCommand(0));
 		ShapeBtn pause = new ShapeBtn("Pause",  new RectangleCollisionBody(), new RunCommand(1));
-		ShapeBtn smaller = new ShapeBtn("Delete",  new RectangleCollisionBody(), new DeleteCommand());
-		ShapeBtn bigger = new ShapeBtn("Bigger", new RectangleCollisionBody(), new ChangeSizeCommand(0));
+		ShapeBtn delete = new ShapeBtn("SetBall",  new RectangleCollisionBody(), new AddBallCommand());
+		ShapeBtn resize = new ShapeBtn("Resize", new RectangleCollisionBody(), new ChangeSizeCommand(0));
 		ShapeBtn drag = new ShapeBtn("Drag",  new RectangleCollisionBody(), new DragCommand());
 		rectangle.setIcon(new ImageIcon("Rectangle.png"));
 		triangle.setIcon(new ImageIcon("Triangle.png"));
@@ -120,8 +121,8 @@ public class ManageWindow extends JPanel {
 		this.add(circle, gbc_Circle);
 		this.add(echelon, gbc_Echelon);
 		this.add(rectangle, gbc_Rectangle);
-		this.add(smaller, gbc_Smaller);
-		this.add(bigger, gbc_Bigger);
+		this.add(delete, gbc_Smaller);
+		this.add(resize, gbc_Bigger);
 		this.add(drag, gbc_Drag);
 		
 	}

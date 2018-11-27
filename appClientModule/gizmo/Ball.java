@@ -23,26 +23,24 @@ public class Ball {
 	//¼ÆÊýÆ÷
 	private int count;
 	
+	//¾²Ö¹
+	private boolean isStand;
+	
 	AnimationWindow win;
 	
 	public Ball(AnimationWindow win) {
-		this.location = new Point(10, 10);
-		this.radius = 10;
-		this.velocity = new Point(8, 8);
+		this.location = new Point(100, 100);
+		this.radius = 8;
+		this.velocity = new Point(0, 10);
 		this.color = Color.RED;
 		this.win = win;
 		this.count = 0;
+		this.isStand = false;
 	}
 
 	public void move() {
 		this.location.translate(velocity.x, velocity.y);
 		if(this.location.x <= this.radius) {
-			this.location.x = this.radius;
-			if(this.velocity.x <= -3) {
-				this.velocity.x += 3;
-			} else {
-				this.velocity.x = 0;
-			}
 			this.velocity.x *= -1;
 		}
 		if(this.location.x >= this.win.getWidth() - this.radius) {
@@ -55,32 +53,29 @@ public class Ball {
 		}
 		if(this.location.y >= this.win.getHeight() - this.radius) {
 			this.location.y = this.win.getHeight() - this.radius;
-			if(this.velocity.y >= 4) {
-				this.velocity.y -= 4;
-			} else {
-				this.velocity.y = 0;
-			}
-			if(this.velocity.x >= 0) {
-				this.velocity.x--;
-			} else {
-				this.velocity.x++;
-			}
+			
 			this.velocity.y *= -1;
+			if(Math.abs(this.velocity.y) <= 2) {
+				this.isStand = true;
+			}
+			/*
 			this.velocity.y -= 10;
+			
 			if(this.velocity.x >= 0) {
 				this.velocity.x += 5;
 			} else {
 				this.velocity.x -= 5;
 			}
+			*/
 		}
 		
 		
 		this.count++;
 		if(this.count == 3) {
-			if(velocity.y >= 30) {
+			if(velocity.y >= 15) {
 				
-			} else {
-				velocity.y += 3;		
+			} else if(!this.isStand) {
+				velocity.y += 1;		
 			}
 			this.count = 0;
 			
@@ -95,15 +90,4 @@ public class Ball {
 		g.setColor(this.color);
 		g.fillOval(location.x - radius, location.y - radius, 2 * radius, 2 * radius);
 	}
-
-	public int getRadius() {
-		// TODO Auto-generated method stub
-		return this.radius;
-	}
-
-	public Point getPosition() {
-		// TODO Auto-generated method stub
-		return this.location;
-	}
-
 }

@@ -1,7 +1,9 @@
 package UI;
 
 import java.awt.Graphics;
+import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -107,6 +109,21 @@ public class AnimationWindow extends JComponent {
 	//将物体加入画板
 	public void addShape(AbstractShape shape) {
 		this.shapes.add(shape);
+	}
+	
+	//将物体移出画板
+	public void removeShape(AbstractShape shape) {
+		for(int i = 0; i < shapes.size(); i++) {
+			if(shapes.get(i) == shape) {
+				shapes.remove(i);
+				break;
+			}
+		}
+	}
+	
+	//设置小球位置
+	public void setBallLocation(Point p) {
+		this.ball.location  = p;
 	}
 	
 	public ArrayList <AbstractShape> getShapes() {
