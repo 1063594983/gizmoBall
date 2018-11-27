@@ -29,6 +29,9 @@ public abstract class AbstractShape {
 	//绘制图形
 	public abstract void paint(Graphics g);
 	
+	//顺时针旋转90度
+	public abstract void rotate();
+	
 	//设置位置
 	public void setPosition(Point p) {
 		this.location = p;
