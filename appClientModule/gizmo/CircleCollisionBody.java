@@ -49,7 +49,6 @@ public class CircleCollisionBody extends AbstractShape implements ICollisionBody
 		return false;
 	}
 
-	@Override
 	public void changeDirect(Ball ball) {
 		double angle1 = Math.atan((double)(ball.location.x - location.x)/(double)(ball.location.y - location.y));
 		double vx = (double) ball.velocity.x, vy = (double) ball.velocity.y;

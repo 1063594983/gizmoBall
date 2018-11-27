@@ -121,6 +121,18 @@ public class AnimationWindow extends JComponent {
 		}
 	}
 	
+	//旋转小球
+	public void rotateShape(AbstractShape shape) {
+		for(int i = 0; i < shapes.size(); i++) {
+			if(shapes.get(i) == shape) {
+				System.out.println(shapes.get(i).mode);
+				shapes.get(i).rotate();
+				System.out.println(shapes.get(i).mode);
+				break;
+			}
+		}
+	}
+	
 	//设置小球位置
 	public void setBallLocation(Point p) {
 		this.ball.location  = p;

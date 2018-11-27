@@ -8,6 +8,12 @@ import java.awt.Point;
 public abstract class AbstractShape {
 	public String name;
 	
+	public int mode;
+	
+	public int[] arr1;
+	
+	public int[] arr2;
+	
 	//颜色
 	protected Color color;
 	
@@ -30,7 +36,9 @@ public abstract class AbstractShape {
 	public abstract void paint(Graphics g);
 	
 	//顺时针旋转90度
-	public abstract void rotate();
+	public void rotate() {
+		this.mode = (this.mode + 1) % 4;
+	}
 	
 	//设置位置
 	public void setPosition(Point p) {
@@ -48,17 +56,6 @@ public abstract class AbstractShape {
 	
 	//判断一个点是否在图形内
 	public abstract boolean contains(Point p);
-	
-	//改变大小
-	public void beBigger(int step) {
-		this.size.width += step;
-		this.size.height += step;
-	}
-	
-	public void beSmaller(int step) {
-		this.size.width -= step;
-		this.size.height -= step;
-	}
 	
 	//获取实例
 	public abstract <T extends AbstractShape> T getNewInstance();
