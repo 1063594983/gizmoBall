@@ -25,7 +25,9 @@ import control.DragCommand;
 import control.MainControl;
 import control.RunCommand;
 import gizmo.RectangleCollisionBody;
+import gizmo.RightPipe;
 import gizmo.TriangleCollisionBody;
+import gizmo.VerticalPipe;
 
 public class ManageWindow extends JPanel {
 	public ManageWindow() {
@@ -34,8 +36,8 @@ public class ManageWindow extends JPanel {
 		ShapeBtn triangle = new ShapeBtn("", new TriangleCollisionBody(), new AddShapeCommand());
 		ShapeBtn circle = new ShapeBtn("", new CircleCollisionBody(), new AddShapeCommand());
 		ShapeBtn echelon = new ShapeBtn("", new EchelonCollisionBody(), new AddShapeCommand());
-		ShapeBtn pipe1 = new ShapeBtn("", new EchelonCollisionBody(), new AddShapeCommand());
-		ShapeBtn pipe2 = new ShapeBtn("", new EchelonCollisionBody(), new AddShapeCommand());
+		ShapeBtn pipe1 = new ShapeBtn("", new VerticalPipe(), new AddShapeCommand());
+		ShapeBtn pipe2 = new ShapeBtn("", new RightPipe(), new AddShapeCommand());
 		ShapeBtn darkhole = new ShapeBtn("ÎüÊÕÆ÷",  new DarkholeCollisionBody(), new AddShapeCommand());
 		ShapeBtn baffle = new ShapeBtn("", new EchelonCollisionBody(), new AddShapeCommand());
 		ShapeBtn play = new ShapeBtn("Play", new RectangleCollisionBody(), new RunCommand(0));

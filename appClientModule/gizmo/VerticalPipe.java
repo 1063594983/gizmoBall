@@ -28,8 +28,8 @@ public class VerticalPipe extends AbstractShape implements ICollisionBody {
 	
 	@Override
 	public boolean isCollision(Ball ball) {
-		RectangleCollisionBody rect1 = new RectangleCollisionBody(new Point(location.x, location.y), this.color, new DimensionUIResource(pipeWidth, size.height));
-		RectangleCollisionBody rect2 = new RectangleCollisionBody(new Point(location.x+size.width - pipeWidth, location.y), this.color, new DimensionUIResource(pipeWidth, size.height));
+		RectangleCollisionBody rect1 = new RectangleCollisionBody(new Point(location.x, location.y), this.color, new Dimension(pipeWidth, size.height));
+		RectangleCollisionBody rect2 = new RectangleCollisionBody(new Point(location.x+size.width - pipeWidth, location.y), this.color, new Dimension(pipeWidth, size.height));
 		if (rect1.isCollisionInVerticalPipe(ball) || rect2.isCollisionInVerticalPipe(ball)) 
 			return true;
 		return false;
@@ -49,8 +49,8 @@ public class VerticalPipe extends AbstractShape implements ICollisionBody {
 
 	@Override
 	public boolean contains(Point p) {
-		RectangleCollisionBody rect1 = new RectangleCollisionBody(new Point(location.x, location.y), this.color, new DimensionUIResource(pipeWidth, size.height));
-		RectangleCollisionBody rect2 = new RectangleCollisionBody(new Point(location.x+size.width - pipeWidth, location.y), this.color, new DimensionUIResource(pipeWidth, size.height));
+		RectangleCollisionBody rect1 = new RectangleCollisionBody(new Point(location.x, location.y), this.color, new Dimension(pipeWidth, size.height));
+		RectangleCollisionBody rect2 = new RectangleCollisionBody(new Point(location.x+size.width - pipeWidth, location.y), this.color, new Dimension(pipeWidth, size.height));
 		return rect1.contains(p)||rect2.contains(p);
 	}
 

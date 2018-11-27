@@ -29,7 +29,7 @@ public class RightPipe extends AbstractShape implements ICollisionBody {
 	@Override
 	public boolean isCollision(Ball ball) {
 		RectangleCollisionBody rect1 = new RectangleCollisionBody(new Point(location.x, location.y), this.color, new Dimension(pipeWidth, size.height));
-		RectangleCollisionBody rect2 = new RectangleCollisionBody(new Point(location.x + pipeWidth, location.y+size.height-pipeWidth), this.color, new Dimension(size.width-pipeWidth, pipeWidth));
+		RectangleCollisionBody rect2 = new RectangleCollisionBody(new Point(location.x, location.y+size.height-pipeWidth), this.color, new Dimension(size.width, pipeWidth));
 		if (rect1.isCollisionInRightPipe(ball) || rect2.isCollisionInRightPipe(ball)) {
 //			if(ball.velocity.y > 0) {
 //				ball.velocity.y++;
@@ -62,7 +62,7 @@ public class RightPipe extends AbstractShape implements ICollisionBody {
 	@Override
 	public boolean contains(Point p) {
 		RectangleCollisionBody rect1 = new RectangleCollisionBody(new Point(location.x, location.y), this.color, new Dimension(pipeWidth, size.height));
-		RectangleCollisionBody rect2 = new RectangleCollisionBody(new Point(location.x + pipeWidth, location.y+size.height-pipeWidth), this.color, new Dimension(size.width-pipeWidth, pipeWidth));
+		RectangleCollisionBody rect2 = new RectangleCollisionBody(new Point(location.x, location.y+size.height-pipeWidth), this.color, new Dimension(size.width, pipeWidth));
 		return rect1.contains(p)||rect2.contains(p);
 	}
 
