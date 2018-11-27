@@ -24,6 +24,7 @@ public class ApplicationWindow extends JFrame {
 		animationWindow = AnimationWindow.getInstance();
 		manageWindow = new ManageWindow();
 		
+		
 		JSplitPane jsp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, animationWindow, manageWindow);
 		jsp.setDividerLocation(500);
 		JSplitPane jsp2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, new MyMenu(this), jsp);
