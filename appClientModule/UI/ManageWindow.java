@@ -76,7 +76,7 @@ public class ManageWindow extends JPanel {
 
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[] {140};
-		int thisHeight = 500;
+		int thisHeight = 700;
 		int evetyHeight = thisHeight / 15;
 		gbl_panel.rowHeights = new int[] {evetyHeight, evetyHeight, evetyHeight,
 				evetyHeight, evetyHeight, evetyHeight, evetyHeight, evetyHeight, evetyHeight,

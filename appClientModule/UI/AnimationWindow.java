@@ -149,7 +149,11 @@ public class AnimationWindow extends JComponent {
 	
 	//设置小球位置
 	public void setBallLocation(Point p) {
-		this.ball.location  = p;
+		this.ball.location = p;
+	}
+	
+	public void setBallVelocity(Point v) {
+		this.ball.velocity = v;
 	}
 	
 	public ArrayList <AbstractShape> getShapes() {
@@ -158,6 +162,20 @@ public class AnimationWindow extends JComponent {
 	
 	public void setShapes(ArrayList<AbstractShape> shapes) {
 		this.shapes = shapes;
+	}
+	
+	public void reStart() {
+		this.grade = 0;
+		this.shapes.clear();
+		this.ball.location = new Point(100, 100);
+		this.ball.velocity = new Point(5, 10);
+		this.setMode(false);
+	}
+	
+	//游戏结束
+	public void continueGame() {
+		this.grade = 0;
+		this.setMode(false);
 	}
 
 }
