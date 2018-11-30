@@ -1,5 +1,7 @@
 package gizmo;
 
+import UI.AnimationWindow;
+
 public interface ICollisionBody {
 	//Åö×²¼ì²â
 	public abstract boolean isCollision(Ball ball);
@@ -21,7 +23,7 @@ public interface ICollisionBody {
 				ball.velocity.x++;
 			}
 			*/
-
+			AnimationWindow.getInstance().grade++;
 			return true;
 		}
 		return false;

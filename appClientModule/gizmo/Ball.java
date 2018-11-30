@@ -31,7 +31,7 @@ public class Ball {
 	public Ball(AnimationWindow win) {
 		this.location = new Point(100, 100);
 		this.radius = 8;
-		this.velocity = new Point(10, 10);
+		this.velocity = new Point(5, 10);
 		this.color = Color.RED;
 		this.win = win;
 		this.count = 0;
@@ -58,15 +58,6 @@ public class Ball {
 			if(Math.abs(this.velocity.y) <= 2) {
 				this.isStand = true;
 			}
-			/*
-			this.velocity.y -= 10;
-			
-			if(this.velocity.x >= 0) {
-				this.velocity.x += 5;
-			} else {
-				this.velocity.x -= 5;
-			}
-			*/
 		}
 		
 		
@@ -77,13 +68,8 @@ public class Ball {
 			} else if(!this.isStand) {
 				velocity.y += 1;		
 			}
-			this.count = 0;
-			
-		}
-		
-		
-		
-		
+			this.count = 0;	
+		}		
 	}
 
 	public void paint(Graphics g) {

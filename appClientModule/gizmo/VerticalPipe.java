@@ -33,15 +33,6 @@ public class VerticalPipe extends AbstractShape implements ICollisionBody {
 	
 	@Override
 	public boolean isCollision(Ball ball) {
-		/*
-=======
-		RectangleCollisionBody rect1 = new RectangleCollisionBody(new Point(location.x, location.y), this.color, new Dimension(pipeWidth, size.height));
-		RectangleCollisionBody rect2 = new RectangleCollisionBody(new Point(location.x+size.width - pipeWidth, location.y), this.color, new Dimension(pipeWidth, size.height));
->>>>>>> 9ed18a686c018e5a6eb8b059a2f4f1ccef313d75
-		if (rect1.isCollisionInVerticalPipe(ball) || rect2.isCollisionInVerticalPipe(ball)) 
-			return true;
-		return false;
-		*/
 		if(rect1.isCollision(ball) || rect2.isCollision(ball)) {
 			/*
 			if (ball.velocity.y > 0) {

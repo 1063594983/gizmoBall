@@ -30,7 +30,7 @@ public class AnimationEventListener extends MouseAdapter implements MouseMotionL
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		
+		System.out.println("hello");
 	}
 
 	@Override

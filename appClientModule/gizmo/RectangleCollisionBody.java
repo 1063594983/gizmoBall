@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.geom.Point2D;
 
 public class RectangleCollisionBody extends AbstractShape implements ICollisionBody {
 	
@@ -48,6 +49,46 @@ public class RectangleCollisionBody extends AbstractShape implements ICollisionB
 		Line left = new Line(new Point(x[3], y[3]), new Point(x[0], y[0]));
 		Line ballLine = new Line(new Point(X, Y), new Point(X + vx, Y + vy));
 		
+		Point[] points = {null, null, null, null};
+		
+		int minIndex = 5;
+		double minDist = 100;
+		
+		if(top.isIntersect(ballLine)) {
+			points[0] = top.getIntersectPoint(ballLine);
+		}
+		if(buttom.isIntersect(ballLine)) {
+			points[1] = buttom.getIntersectPoint(ballLine);
+		}
+		if(right.isIntersect(ballLine)) {
+			points[2] = right.getIntersectPoint(ballLine);
+		}
+		if(left.isIntersect(ballLine)) {
+			points[3] = left.getIntersectPoint(ballLine);
+		}
+		boolean flag = false;
+		
+		for(int i = 0; i < 4; i++) {
+			if(points[i] != null) {
+				if(minDist > ball.location.distance(points[i])) {
+					minDist = ball.location.distance(points[i]);
+					minIndex = i;
+				}
+				flag = true;
+			}
+		}
+		if(flag) {
+			int[][] arr = {{0, -1, 1, -1}, {0, 1, 1, -1}, {1, 0, -1, 1}, {-1, 0, -1, 1}};
+			
+			ball.location.x = points[minIndex].x + ball.radius * arr[minIndex][0];
+			ball.location.y = points[minIndex].y + ball.radius * arr[minIndex][1];
+			
+			ball.velocity.x *= arr[minIndex][2];
+			ball.velocity.y *= arr[minIndex][3];
+		}
+		
+		
+		/*
 		if(top.isIntersect(ballLine)) {
 			ball.location.x = top.getIntersectPoint(ballLine).x;
 			ball.location.y = top.getIntersectPoint(ballLine).y - ball.radius;
@@ -73,8 +114,9 @@ public class RectangleCollisionBody extends AbstractShape implements ICollisionB
 			ball.velocity.x *= -1;
 			return true;
 		}
+		*/
 		
-		return false;
+		return flag;
 	}
 	
 	//VerticalPipe管道中运用矩形，碰撞后改变方向

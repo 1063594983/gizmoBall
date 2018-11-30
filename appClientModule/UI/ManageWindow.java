@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import gizmo.AbstractShape;
+import gizmo.Baffle;
 import gizmo.CircleCollisionBody;
 import gizmo.DarkholeCollisionBody;
 import gizmo.EchelonCollisionBody;
@@ -43,7 +44,7 @@ public class ManageWindow extends JPanel {
 		ShapeBtn pipe1 = new ShapeBtn("", new VerticalPipe(), new AddShapeCommand());
 		ShapeBtn pipe2 = new ShapeBtn("", new RightPipe(), new AddShapeCommand());
 		ShapeBtn darkhole = new ShapeBtn("ÎüÊÕÆ÷",  new DarkholeCollisionBody(), new AddShapeCommand());
-		ShapeBtn baffle = new ShapeBtn("", new EchelonCollisionBody(), new AddShapeCommand());
+		ShapeBtn baffle = new ShapeBtn("", new Baffle(), new AddShapeCommand());
 		ShapeBtn rotate = new ShapeBtn("Rotate", new RectangleCollisionBody(), new RotateCommand());
 		ShapeBtn setBall = new ShapeBtn("SetBall", new RectangleCollisionBody(), new AddBallCommand());
 		ShapeBtn resize = new ShapeBtn("Resize", new RectangleCollisionBody(), new ChangeSizeCommand(0));

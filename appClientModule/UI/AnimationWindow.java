@@ -1,5 +1,7 @@
 package UI;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -24,6 +26,8 @@ public class AnimationWindow extends JComponent {
 	
 	private int FPS = 60;
 	
+	public int grade;
+	
 	//定时器
 	private Timer timer;
 	private Timer timer2;
@@ -35,7 +39,7 @@ public class AnimationWindow extends JComponent {
 	//单例
 	private static AnimationWindow animationWindow = new AnimationWindow();
 	
-	//获得单例
+	//获得单例+
 	public static AnimationWindow getInstance() {
 		return AnimationWindow.animationWindow;
 	}
@@ -43,12 +47,17 @@ public class AnimationWindow extends JComponent {
 	private AnimationWindow() {
 		shapes = new ArrayList<>();
 		ball = new Ball(this);
+		
+		grade = 0;
+		
 		eventListener = new AnimationEventListener(this);
 		itemEventListener = new ItemEventListener(this);
 		//添加点击
 		this.addMouseListener(itemEventListener);
 		//添加拖拽
 		this.addMouseMotionListener(itemEventListener);
+		//添加键盘
+		this.addKeyListener(itemEventListener);
 		timer = new Timer(1000 / FPS, eventListener);
 		timer2 = new Timer(1000 / FPS, itemEventListener);
 		timer2.start();
@@ -65,6 +74,7 @@ public class AnimationWindow extends JComponent {
 			//requestFocus();
 			this.removeMouseListener(itemEventListener);
 			this.removeMouseMotionListener(itemEventListener);
+			this.removeKeyListener(itemEventListener);
 			timer.start();
 			timer2.stop();
 		} else {
@@ -74,6 +84,8 @@ public class AnimationWindow extends JComponent {
 			this.addMouseListener(itemEventListener);
 			//添加拖拽
 			this.addMouseMotionListener(itemEventListener);
+			//添加键盘
+			this.addKeyListener(itemEventListener);
 			
 			timer.stop();
 			timer2.start();
@@ -86,6 +98,8 @@ public class AnimationWindow extends JComponent {
 			this.shapes.get(i).paint(g);
 		}
 		ball.paint(g);
+		g.setColor(Color.BLACK);
+		g.drawString("当前分数为" + this.grade, this.getWidth() - 100, 20);
 		//ball.move();
 	}
 	
