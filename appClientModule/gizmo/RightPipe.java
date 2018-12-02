@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.Rectangle;
 
 import config.Config;
 
@@ -27,21 +26,11 @@ public class RightPipe extends AbstractShape implements ICollisionBody {
 		rect2 = new RectangleCollisionBody();
 	}
 
-	/*
-	public RightPipe(Point location, Color color) {
-		this.location = location;
-		this.size = new Dimension(50, 50);
-		this.color = color;
-		this.name = "RightPipe";
-		this.pipeWidth = 10;
-	}
-	*/
-
 	@Override
 	public boolean isCollision(Ball ball) {
 		if (rect1.isCollision(ball) || rect2.isCollision(ball)) {
 			count++;
-			if(count == 5) {
+			if(count == Config.PIPEFRICTION) {
 				ballSlow(ball);
 				count = 0;
 			}

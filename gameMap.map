@@ -1,0 +1,15 @@
+VerticalPipe 107 243 65 327 0
+RightPipe 497 460 73 57 3
+VerticalPipe 453 268 69 276 0
+RightPipe 497 82 90 53 2
+RightPipe 293 449 66 181 2
+RightPipe 376 449 174 171 1
+rectangle 149 370 260 36 0
+RightPipe 65 459 220 63 0
+echelon 107 56 50 50 0
+darkhole 292 664 50 50 0
+darkhole 330 662 50 50 0
+darkhole 369 659 50 50 0
+triangle 419 91 50 50 0
+baffle 336 587 100 50 0
+ball 100 100 8 8 0

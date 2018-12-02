@@ -1,36 +1,20 @@
 package gizmo;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
-
 import config.Config;
 
 public class RectangleCollisionBody extends AbstractShape implements ICollisionBody {
+	
+	int count = 0;
 	
 	public RectangleCollisionBody() {
 		this.size = Config.RECTSIZE;
 		this.name = "rectangle";
 		this.color = new Color(248, 206, 204);
 	}
-	
-	/*
-	public RectangleCollisionBody(Point location, Color color) {
-		this.location = location;
-		this.size = new Dimension(50, 50);
-		this.color = color;
-		this.name = "rectangle";
-	}
-	
-	public RectangleCollisionBody(Point location, Color color, Dimension dimension) {
-		this.location = location;
-		this.size = dimension;
-		this.color = color;
-		this.name = "rectangle";
-	}
-	*/
 
 	@Override
 	public void paint(Graphics g) {
@@ -88,36 +72,12 @@ public class RectangleCollisionBody extends AbstractShape implements ICollisionB
 			
 			ball.velocity.x *= arr[minIndex][2];
 			ball.velocity.y *= arr[minIndex][3];
+			count++;
+			if(count == Config.RECFRICTION) {
+				ballSlow(ball);
+				count = 0;
+			}
 		}
-		
-		
-		/*
-		if(top.isIntersect(ballLine)) {
-			ball.location.x = top.getIntersectPoint(ballLine).x;
-			ball.location.y = top.getIntersectPoint(ballLine).y - ball.radius;
-			
-			ball.velocity.y *= -1;
-			return true;
-		} else if(buttom.isIntersect(ballLine)) {
-			ball.location.x = buttom.getIntersectPoint(ballLine).x;
-			ball.location.y = buttom.getIntersectPoint(ballLine).y + ball.radius;
-
-			ball.velocity.y *= -1;
-			return true;
-		} else if(left.isIntersect(ballLine)) {
-			ball.location.y = left.getIntersectPoint(ballLine).y;
-			ball.location.x = left.getIntersectPoint(ballLine).x - ball.radius;
-
-			ball.velocity.x *= -1;
-			return true;
-		} else if(right.isIntersect(ballLine)) {
-			ball.location.y = right.getIntersectPoint(ballLine).y;
-			ball.location.x = right.getIntersectPoint(ballLine).x + ball.radius;
-
-			ball.velocity.x *= -1;
-			return true;
-		}
-		*/
 		
 		return flag;
 	}

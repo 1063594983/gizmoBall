@@ -74,11 +74,6 @@ public class Baffle extends AbstractShape implements ICollisionBody {
 	}
 
 	@Override
-	public Baffle getNewInstance() {
-		return new Baffle();
-	}
-
-	@Override
 	public boolean isCollision(Ball ball) {
 		Line ballLine = new Line(new Point(ball.location.x, ball.location.y), 
 				new Point(ball.location.x + ball.velocity.x, ball.location.y + ball.velocity.y));
@@ -87,6 +82,11 @@ public class Baffle extends AbstractShape implements ICollisionBody {
 			ball.velocity.y *= -1;
 			if(this.mode == 1) {
 				ball.velocity.y -= 2;
+				if(ball.velocity.x >= 0) {
+					ball.velocity.x += 2;
+				} else {
+					ball.velocity.x -= 2;
+				}
 			} else {
 				ballSlowY(ball);
 			}
@@ -101,6 +101,15 @@ public class Baffle extends AbstractShape implements ICollisionBody {
 	
 	public void returnStand() {
 		mode = 0;
+	}
+	
+	public void setKeyCode(int keyCode) {
+		this.keyCode = keyCode;
+	}
+
+	@Override
+	public Baffle getNewInstance() {
+		return new Baffle();
 	}
 
 }

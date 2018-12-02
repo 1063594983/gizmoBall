@@ -1,10 +1,8 @@
 package gizmo;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.Rectangle;
 
 import config.Config;
 
@@ -17,22 +15,7 @@ public class CircleCollisionBody extends AbstractShape implements ICollisionBody
 		this.name = "circle";
 		this.color = new Color(128, 255, 0);
 	}
-	
-	/*
-	public CircleCollisionBody(Point location, Color color) {
-		this.location = location;
-		this.size = new Dimension(50, 50);
-		this.color = color;
-		this.name = "circle";
-	}
-	
-	public CircleCollisionBody(Point location, Dimension size) {
-		this.location = location;
-		this.size = size;
-		this.name = "circle";
-	}
 
-	*/
 	@Override
 	public void paint(Graphics g) {
 		g.setColor(this.color);
@@ -89,6 +72,7 @@ public class CircleCollisionBody extends AbstractShape implements ICollisionBody
 		return false;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public CircleCollisionBody getNewInstance() {
 		return new CircleCollisionBody();

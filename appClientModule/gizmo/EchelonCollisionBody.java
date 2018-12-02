@@ -1,7 +1,6 @@
 package gizmo;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Polygon;
@@ -11,6 +10,8 @@ import config.Config;
 public class EchelonCollisionBody extends AbstractShape implements ICollisionBody {
 	int[][] tmpArr = {{1, -1, 1, -1, -1, -1, 1, 1}, {-1, 1, -1, 1, 1, 1, -1, -1}, {1, -1, 1, -1, -1, -1, 1, 1}, 
 			{-1, 1, -1, 1, 1, 1, -1, -1}};
+	
+	int count = 0;
 
 	public EchelonCollisionBody() {
 		this.size = Config.ECHESIZE;
@@ -81,6 +82,8 @@ public class EchelonCollisionBody extends AbstractShape implements ICollisionBod
 		int Y = ball.location.y;
 		int vx = ball.velocity.x;
 		int vy = ball.velocity.y;
+		
+		boolean flag = false;
 
 		Line top = new Line(new Point(arr1[0], arr2[0]), new Point(arr1[1], arr2[1]));
 		Line buttom = new Line(new Point(arr1[2], arr2[2]), new Point(arr1[3], arr2[3]));
@@ -91,17 +94,17 @@ public class EchelonCollisionBody extends AbstractShape implements ICollisionBod
 		if (top.isIntersect(ballLine)) {
 			ball.location.x = top.getIntersectPoint(ballLine).x;
 			ball.location.y = top.getIntersectPoint(ballLine).y - ball.radius;
-			
 			ball.velocity.x *= tmpArr[mode][0];
 			ball.velocity.y *= tmpArr[mode][1];
-			return true;
+			
+			flag = true;
 		} else if (buttom.isIntersect(ballLine)) {
 			ball.location.x = buttom.getIntersectPoint(ballLine).x;
 			ball.location.y = buttom.getIntersectPoint(ballLine).y + ball.radius;
 
 			ball.velocity.x *= tmpArr[mode][2];
 			ball.velocity.y *= tmpArr[mode][3];
-			return true;
+			flag = true;
 		} else if (leftHypotenuse.isIntersect(ballLine)) {
 			ball.location.y = leftHypotenuse.getIntersectPoint(ballLine).y - ball.radius;
 			ball.location.x = leftHypotenuse.getIntersectPoint(ballLine).x - ball.radius;
@@ -109,17 +112,24 @@ public class EchelonCollisionBody extends AbstractShape implements ICollisionBod
 			ball.velocity.x = vy * tmpArr[mode][4];
 			ball.velocity.y = vx * tmpArr[mode][5];
 
-			return true;
+			flag = true;
 		} else if (rightHypotenuse.isIntersect(ballLine)) {
 			ball.location.y = rightHypotenuse.getIntersectPoint(ballLine).y - ball.radius;
 			ball.location.x = rightHypotenuse.getIntersectPoint(ballLine).x + ball.radius;
 			ball.velocity.x = vy * tmpArr[mode][6];
 			ball.velocity.y = vx * tmpArr[mode][7];
 
-			return true;
+			flag = true;
 		}
-
-		return false;
+		
+		if(flag) {
+			count++;
+			if(count == Config.ECHEFRICTION) {
+				ballSlow(ball);
+				count = 0;
+			}
+		}
+		return flag;
 	}
 
 	@Override

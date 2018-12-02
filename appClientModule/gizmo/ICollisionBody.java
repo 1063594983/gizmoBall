@@ -17,17 +17,17 @@ public interface ICollisionBody {
 	
 	//Ð¡ÇòÄ¦²Á¼õËÙ
 	public default void ballSlowX(Ball ball) {
-		if(ball.velocity.x > 0) {
+		if(ball.velocity.x > 1) {
 			ball.velocity.x--;
-		} else if(ball.velocity.x < 0) {
+		} else if(ball.velocity.x < -1) {
 			ball.velocity.x++;
 		}
 	}
 	
 	public default void ballSlowY(Ball ball) {
-		if(ball.velocity.y > 0) {
+		if(ball.velocity.y > 1) {
 			ball.velocity.y--;
-		} else if(ball.velocity.y < 0) {
+		} else if(ball.velocity.y < -1) {
 			ball.velocity.y++;
 		}
 	}

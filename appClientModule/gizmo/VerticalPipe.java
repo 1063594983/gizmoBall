@@ -24,21 +24,11 @@ public class VerticalPipe extends AbstractShape implements ICollisionBody {
 		rect2 = new RectangleCollisionBody();
 	}
 	
-	/*
-	public VerticalPipe(Point location, Color color) {
-		this.location = location;
-		this.size = new Dimension(50, 50);
-		this.color = color;
-		this.name = "VerticalPipe";
-		this.pipeWidth = 10;
-	}
-	*/
-	
 	@Override
 	public boolean isCollision(Ball ball) {
 		if(rect1.isCollision(ball) || rect2.isCollision(ball)) {
 			count++;
-			if(count == 5) {
+			if(count == Config.PIPEFRICTION) {
 				ballSlow(ball);
 				count = 0;
 			}

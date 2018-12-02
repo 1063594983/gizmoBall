@@ -9,5 +9,4 @@ public class ChangeSizeCommand extends Command {
 	public void execute() {	
 
 	}
-
 }

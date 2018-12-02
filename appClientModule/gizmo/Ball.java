@@ -53,9 +53,6 @@ public class Ball {
 		if(this.location.y <= this.radius) {
 			this.location.y = this.radius;
 			this.velocity.y *= -1;
-			if(Math.abs(this.velocity.y) <= 2) {
-				this.isStand = true;
-			}
 		}
 		if(this.location.y >= this.win.getHeight() - this.radius) {
 			this.location.y = this.win.getHeight() - this.radius;	
@@ -67,7 +64,7 @@ public class Ball {
 		
 		
 		this.count++;
-		if(this.count == 2) {
+		if(this.count == Config.GRAVITY) {
 			if(velocity.y >= 15) {
 				
 			} else {
