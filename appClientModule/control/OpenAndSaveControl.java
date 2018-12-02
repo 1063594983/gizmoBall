@@ -2,7 +2,6 @@ package control;
 
 import java.awt.Dimension;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -11,6 +10,8 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import UI.AnimationWindow;
 import gizmo.AbstractShape;
@@ -50,8 +51,15 @@ public class OpenAndSaveControl {
 	
 	//打开新地图
 	public static void open(String fileName) {
-		//以.map结尾
 		
+		//以.map结尾
+		String regEx = ".*map$";
+		if(Pattern.matches(regEx, fileName)) {
+			AnimationWindow.getInstance().setMessage("");
+		} else {
+			AnimationWindow.getInstance().setMessage("文件格式错误！");
+			return;
+		}
 		ArrayList <AbstractShape> shapes = new ArrayList<>();
 		BufferedReader reader = null;
 		

@@ -1,4 +1,5 @@
 VerticalPipe 180 222 99 524 0
 rectangle 80 483 199 118 0
+darkhole 196 26 50 50 0
 baffle 198 405 269 161 0
-ball 178 70 10 10 0
+ball 178 70 8 8 0

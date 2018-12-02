@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 
 import UI.AnimationWindow;
+import config.Config;
 
 public class Ball {
 	
@@ -23,15 +24,17 @@ public class Ball {
 	//¼ÆÊýÆ÷
 	private int count;
 	
+	private int count2;
+	
 	//¾²Ö¹
 	private boolean isStand;
 	
 	AnimationWindow win;
 	
 	public Ball(AnimationWindow win) {
-		this.location = new Point(100, 100);
-		this.radius = 8;
-		this.velocity = new Point(5, 10);
+		this.location = Config.BALLLOCATION;
+		this.radius = Config.BALLRADIUS;
+		this.velocity = Config.BALLVELOCITY;
 		this.color = Color.RED;
 		this.win = win;
 		this.count = 0;
@@ -50,10 +53,12 @@ public class Ball {
 		if(this.location.y <= this.radius) {
 			this.location.y = this.radius;
 			this.velocity.y *= -1;
+			if(Math.abs(this.velocity.y) <= 2) {
+				this.isStand = true;
+			}
 		}
 		if(this.location.y >= this.win.getHeight() - this.radius) {
-			this.location.y = this.win.getHeight() - this.radius;
-			
+			this.location.y = this.win.getHeight() - this.radius;	
 			this.velocity.y *= -1;
 			if(Math.abs(this.velocity.y) <= 2) {
 				this.isStand = true;
@@ -62,11 +67,24 @@ public class Ball {
 		
 		
 		this.count++;
-		if(this.count == 3) {
+		if(this.count == 2) {
 			if(velocity.y >= 15) {
 				
-			} else if(!this.isStand) {
-				velocity.y += 1;		
+			} else {
+				if(isStand) {
+					this.velocity.y = 0;
+					this.count2++;
+					if(count2 == 10) {
+						if(this.velocity.x > 0) {
+							this.velocity.x--;
+						} else if(this.velocity.x < 0) {
+							this.velocity.x++;
+						}
+						count2 = 0;
+					}			
+				} else {
+					this.velocity.y++;
+				}
 			}
 			this.count = 0;	
 		}		

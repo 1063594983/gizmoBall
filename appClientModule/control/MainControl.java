@@ -1,6 +1,8 @@
 package control;
 
 public class MainControl {
+	
+	//当前执行的命令
 	private static Command command;
 	
 	public static void setCommand(Command command) {

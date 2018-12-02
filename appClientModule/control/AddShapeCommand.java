@@ -1,11 +1,7 @@
 package control;
 
-import java.awt.Color;
-
 import UI.AnimationWindow;
 import gizmo.AbstractShape;
-import gizmo.RectangleCollisionBody;
-import gizmo.TriangleCollisionBody;
 
 public class AddShapeCommand extends Command {	
 	

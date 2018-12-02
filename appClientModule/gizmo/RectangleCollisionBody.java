@@ -5,16 +5,18 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.geom.Point2D;
+
+import config.Config;
 
 public class RectangleCollisionBody extends AbstractShape implements ICollisionBody {
 	
 	public RectangleCollisionBody() {
-		this.size = new Dimension(50, 50);
+		this.size = Config.RECTSIZE;
 		this.name = "rectangle";
 		this.color = new Color(248, 206, 204);
 	}
 	
+	/*
 	public RectangleCollisionBody(Point location, Color color) {
 		this.location = location;
 		this.size = new Dimension(50, 50);
@@ -28,6 +30,7 @@ public class RectangleCollisionBody extends AbstractShape implements ICollisionB
 		this.color = color;
 		this.name = "rectangle";
 	}
+	*/
 
 	@Override
 	public void paint(Graphics g) {

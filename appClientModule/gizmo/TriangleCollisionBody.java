@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Polygon;
 
+import config.Config;
+
 public class TriangleCollisionBody extends AbstractShape implements ICollisionBody {
 	
 	int count = 5;
@@ -14,7 +16,7 @@ public class TriangleCollisionBody extends AbstractShape implements ICollisionBo
 	int[][] tmpArr = {{1, -1, -1, 1, -1, -1}, {-1, 1, 1, -1, 1, 1}, {1, -1, -1, 1, -1, -1}, {-1, 1, 1, -1, 1, 1}};
 	
 	public TriangleCollisionBody() {
-		this.size = new Dimension(50, 50);
+		this.size = Config.TRISIZE;
 		this.name = "triangle";
 		this.location = new Point(100, 100);
 		this.color = new Color(204, 204, 0);
@@ -23,12 +25,14 @@ public class TriangleCollisionBody extends AbstractShape implements ICollisionBo
 		arr2 = new int[3];	
 	}
 	
+	/*
 	public TriangleCollisionBody(Point location, Color color) {
 		this.size = new Dimension(50, 50);
 		this.name = "triangle";
 		this.location = location; 
 		this.color = color;
 	}
+	*/
 
 	public boolean isCollision(Ball ball) {
 		
@@ -45,6 +49,7 @@ public class TriangleCollisionBody extends AbstractShape implements ICollisionBo
 		if(top.isIntersect(ballLine)) {
 			ball.location.x = top.getIntersectPoint(ballLine).x;
 			ball.location.y = top.getIntersectPoint(ballLine).y - ball.radius;
+			
 			ball.velocity.x *= tmpArr[mode][0];
 			ball.velocity.y *= tmpArr[mode][1];
 			return true;
@@ -58,6 +63,7 @@ public class TriangleCollisionBody extends AbstractShape implements ICollisionBo
 		} else if(hypotenuse.isIntersect(ballLine)) {
 			ball.location.y = hypotenuse.getIntersectPoint(ballLine).y;
 			ball.location.x = hypotenuse.getIntersectPoint(ballLine).x;
+			
 			ball.velocity.x = tmpArr[mode][4] * vy;
 			ball.velocity.y = tmpArr[mode][5] * vx;	
 			return true;

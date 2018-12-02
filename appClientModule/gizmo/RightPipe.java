@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import config.Config;
+
 public class RightPipe extends AbstractShape implements ICollisionBody {
 
 	private int pipeWidth;
@@ -16,16 +18,16 @@ public class RightPipe extends AbstractShape implements ICollisionBody {
 	int count = 0; //Ã¿×²5ÏÂ¼õËÙ
 
 	public RightPipe() {
-		this.size = new Dimension(50, 50);
+		this.size = Config.RIGHTSIZE;
 		this.name = "RightPipe";
-		//this.color = new Color(248, 206, 204);
 		this.color = Color.BLACK;
-		this.pipeWidth = 10;
+		this.pipeWidth = Config.PIPEWIDTH;
 		this.mode = 0;
-		rect1 = new RectangleCollisionBody(new Point(1, 1), this.color, new Dimension(1, 1));
-		rect2 = new RectangleCollisionBody(new Point(1, 1), this.color, new Dimension(1, 1));
+		rect1 = new RectangleCollisionBody();
+		rect2 = new RectangleCollisionBody();
 	}
 
+	/*
 	public RightPipe(Point location, Color color) {
 		this.location = location;
 		this.size = new Dimension(50, 50);
@@ -33,22 +35,14 @@ public class RightPipe extends AbstractShape implements ICollisionBody {
 		this.name = "RightPipe";
 		this.pipeWidth = 10;
 	}
+	*/
 
 	@Override
 	public boolean isCollision(Ball ball) {
 		if (rect1.isCollision(ball) || rect2.isCollision(ball)) {
 			count++;
 			if(count == 5) {
-				if(ball.velocity.x > 0) {
-					ball.velocity.x--;
-				} else if(ball.velocity.x < 0) {
-					ball.velocity.x++;
-				}
-				if(ball.velocity.y > 0) {
-					ball.velocity.y--;
-				} else if(ball.velocity.y < 0) {
-					ball.velocity.y++;
-				}
+				ballSlow(ball);
 				count = 0;
 			}
 			return true;
@@ -92,14 +86,10 @@ public class RightPipe extends AbstractShape implements ICollisionBody {
 
 		}
 		}
-		g.setColor(this.color);
-		
-		g.fillRect(rect1.getPosition().x, rect1.getPosition().y, rect1.getSize().width, rect1.getSize().height);
-		g.fillRect(rect2.getPosition().x, rect2.getPosition().y, rect2.getSize().width, rect2.getSize().height);
-		/*
+		rect1.setColor(this.color);
+		rect2.setColor(this.color);
 		rect1.paint(g);
 		rect2.paint(g);
-		*/
 	}
 
 	@Override

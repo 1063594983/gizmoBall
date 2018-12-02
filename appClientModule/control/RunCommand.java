@@ -9,9 +9,9 @@ public class RunCommand extends Command {
 	}
 	private int mode;
 	public RunCommand(int mode) {
-		// TODO Auto-generated constructor stub
 		this.mode = mode;
 	}
+	
 	public void execute() {
 		if(mode == RunMode.PALY) {
 			AnimationWindow.getInstance().setMode(true);

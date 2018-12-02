@@ -9,23 +9,31 @@ public interface ICollisionBody {
 	//处理碰撞
 	public default boolean handleCollision(Ball ball) {
 		if(isCollision(ball)) {
-			//changeDirect(ball);
-			/*
-			if(ball.velocity.y > 0) {
-				ball.velocity.y--;
-			} else if(ball.velocity.y < 0) {
-				ball.velocity.y++;
-			}
-			
-			if(ball.velocity.x > 0) {
-				ball.velocity.x--;
-			} else if(ball.velocity.x < 0) {
-				ball.velocity.x++;
-			}
-			*/
 			AnimationWindow.getInstance().grade++;
 			return true;
 		}
 		return false;
+	}
+	
+	//小球摩擦减速
+	public default void ballSlowX(Ball ball) {
+		if(ball.velocity.x > 0) {
+			ball.velocity.x--;
+		} else if(ball.velocity.x < 0) {
+			ball.velocity.x++;
+		}
+	}
+	
+	public default void ballSlowY(Ball ball) {
+		if(ball.velocity.y > 0) {
+			ball.velocity.y--;
+		} else if(ball.velocity.y < 0) {
+			ball.velocity.y++;
+		}
+	}
+	
+	public default void ballSlow(Ball ball) {
+		ballSlowX(ball);
+		ballSlowY(ball);
 	}
 }

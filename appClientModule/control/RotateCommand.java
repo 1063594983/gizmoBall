@@ -1,7 +1,5 @@
 package control;
 
-import UI.AnimationWindow;
-
 public class RotateCommand extends Command {
 	public RotateCommand() {
 		this.name = "rotate";
@@ -9,6 +7,6 @@ public class RotateCommand extends Command {
 
 	@Override
 	public void execute() {
-		AnimationWindow.getInstance().rotateShape(this.shape);
+		this.shape.rotate();
 	}
 }

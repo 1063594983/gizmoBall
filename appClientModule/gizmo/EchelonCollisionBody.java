@@ -5,19 +5,15 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Polygon;
-import java.awt.Rectangle;
+
+import config.Config;
 
 public class EchelonCollisionBody extends AbstractShape implements ICollisionBody {
-
-	int[] arr1;
-
-	int[] arr2;
-	
 	int[][] tmpArr = {{1, -1, 1, -1, -1, -1, 1, 1}, {-1, 1, -1, 1, 1, 1, -1, -1}, {1, -1, 1, -1, -1, -1, 1, 1}, 
 			{-1, 1, -1, 1, 1, 1, -1, -1}};
 
 	public EchelonCollisionBody() {
-		this.size = new Dimension(40, 40);
+		this.size = Config.ECHESIZE;
 		this.name = "echelon";
 		this.color = new Color(102, 178, 255);
 		this.mode = 0;
@@ -26,15 +22,18 @@ public class EchelonCollisionBody extends AbstractShape implements ICollisionBod
 		arr2 = new int[4];
 	}
 
+	/*
 	public EchelonCollisionBody(Point location, Color color) {
 		this.location = location;
 		this.size = new Dimension(40, 40);
 		this.color = color;
 		this.name = "echelon";
 	}
+	*/
 
 	@Override
 	public void paint(Graphics g) {
+		
 		if(mode == 0) {
 			arr1[0] = location.x - size.width / 2; 
 			arr1[1] = location.x + size.width / 2; 
@@ -125,12 +124,6 @@ public class EchelonCollisionBody extends AbstractShape implements ICollisionBod
 
 	@Override
 	public boolean contains(Point p) {
-		/*
-		int[] arr1 = { location.x - size.width / 2, location.x + size.width / 2, location.x + size.width * 3 / 2,
-				location.x - size.width * 3 / 2 };
-		int[] arr2 = { location.y - size.height / 2, location.y - size.height / 2, location.y + size.height / 2,
-				location.y + size.height / 2 };
-		*/
 		if (new Polygon(arr1, arr2, 4).contains(p)) {
 			return true;
 		} else {
@@ -140,20 +133,11 @@ public class EchelonCollisionBody extends AbstractShape implements ICollisionBod
 
 	@Override
 	public EchelonCollisionBody getNewInstance() {
-		// TODO Auto-generated method stub
 		return new EchelonCollisionBody();
 	}
 
 	@Override
 	public void rotate() {
-		/*
-		for (int i = 0; i < 4; i++) {
-			int tmpX = arr1[i];
-			int tmpY = arr2[i];
-			arr1[i] = location.x + (location.y - tmpY);
-			arr2[i] = location.y + (tmpX - location.x);
-		}
-		*/
 		this.mode = (this.mode + 1) % 4;
 	}
 }

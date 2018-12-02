@@ -6,16 +6,19 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import config.Config;
+
 public class CircleCollisionBody extends AbstractShape implements ICollisionBody{
 	
 	int count = 5;
 	
 	public CircleCollisionBody() {
-		this.size = new Dimension(50, 50);
+		this.size = Config.CIRSIZE;
 		this.name = "circle";
 		this.color = new Color(128, 255, 0);
 	}
 	
+	/*
 	public CircleCollisionBody(Point location, Color color) {
 		this.location = location;
 		this.size = new Dimension(50, 50);
@@ -29,6 +32,7 @@ public class CircleCollisionBody extends AbstractShape implements ICollisionBody
 		this.name = "circle";
 	}
 
+	*/
 	@Override
 	public void paint(Graphics g) {
 		g.setColor(this.color);

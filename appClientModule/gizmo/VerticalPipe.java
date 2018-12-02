@@ -5,7 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 
-import javax.swing.plaf.DimensionUIResource;
+import config.Config;
 
 public class VerticalPipe extends AbstractShape implements ICollisionBody {
 
@@ -14,18 +14,17 @@ public class VerticalPipe extends AbstractShape implements ICollisionBody {
 	RectangleCollisionBody rect2;
 	
 	int count = 0;
-	
-	
+
 	public VerticalPipe() {
-		this.size = new Dimension(50, 50);
+		this.size = Config.VERSIZE;
 		this.name = "VerticalPipe";
-		//this.color = new Color(248, 206, 204);
 		this.color = Color.BLACK;
-		this.pipeWidth = 10;
+		this.pipeWidth = Config.PIPEWIDTH;
 		rect1 = new RectangleCollisionBody();
 		rect2 = new RectangleCollisionBody();
 	}
 	
+	/*
 	public VerticalPipe(Point location, Color color) {
 		this.location = location;
 		this.size = new Dimension(50, 50);
@@ -33,22 +32,14 @@ public class VerticalPipe extends AbstractShape implements ICollisionBody {
 		this.name = "VerticalPipe";
 		this.pipeWidth = 10;
 	}
+	*/
 	
 	@Override
 	public boolean isCollision(Ball ball) {
 		if(rect1.isCollision(ball) || rect2.isCollision(ball)) {
 			count++;
 			if(count == 5) {
-				if(ball.velocity.x > 0) {
-					ball.velocity.x--;
-				} else if(ball.velocity.x < 0) {
-					ball.velocity.x++;
-				}
-				if(ball.velocity.y > 0) {
-					ball.velocity.y--;
-				} else if(ball.velocity.y < 0) {
-					ball.velocity.y++;
-				}
+				ballSlow(ball);
 				count = 0;
 			}
 			return true;
@@ -71,13 +62,6 @@ public class VerticalPipe extends AbstractShape implements ICollisionBody {
 		}
 		rect1.setColor(this.color);
 		rect2.setColor(this.color);
-		
-		/*
-		g.setColor(this.color);
-		g.fillRect(rect1.location.x, rect1.location.y, rect1.size.width, rect1.size.height);
-		g.fillRect(rect2.location.x, rect2.location.y, rect2.size.width, rect2.size.height);
-		*/
-		
 		rect1.paint(g);
 		rect2.paint(g);
 		
@@ -85,14 +69,11 @@ public class VerticalPipe extends AbstractShape implements ICollisionBody {
 
 	@Override
 	public boolean contains(Point p) {
-		//RectangleCollisionBody rect1 = new RectangleCollisionBody(new Point(location.x, location.y), this.color, new DimensionUIResource(pipeWidth, size.height));
-		//RectangleCollisionBody rect2 = new RectangleCollisionBody(new Point(location.x+size.width - pipeWidth, location.y), this.color, new DimensionUIResource(pipeWidth, size.height));
 		return rect1.contains(p)||rect2.contains(p);
 	}
 
 	@Override
 	public VerticalPipe getNewInstance() {
-		// TODO Auto-generated method stub
 		return new VerticalPipe();
 	}
 	
