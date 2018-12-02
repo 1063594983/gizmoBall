@@ -19,7 +19,7 @@ public class ApplicationWindow extends JFrame {
 	
 	private AnimationWindow animationWindow;
 	private ManageWindow manageWindow;
-	private ScoreWindow scoreWindow;
+	//private ScoreWindow scoreWindow;
 	
 	public ApplicationWindow(Dimension size, Point location) {
 		this.setSize(size);
@@ -39,13 +39,14 @@ public class ApplicationWindow extends JFrame {
 	public void init() {
 		animationWindow = AnimationWindow.getInstance();
 		manageWindow = new ManageWindow();
-		scoreWindow = new ScoreWindow();
-		scoreWindow.setMessage("hello");
+		//scoreWindow = new ScoreWindow();
+		//scoreWindow.setMessage("hello");
 
-		JLabel testjb = new JLabel("dsfsd");
-		JSplitPane jsp3 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, manageWindow, scoreWindow);
+		/*
+		 * JSplitPane jsp3 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, manageWindow, scoreWindow);
 		jsp3.setDividerLocation(650);
-		JSplitPane jsp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, animationWindow, jsp3);
+		*/
+		JSplitPane jsp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, animationWindow, manageWindow);
 		jsp.setDividerLocation(500);
 		JSplitPane jsp2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, new MyMenu(this), jsp);
 		jsp2.setDividerLocation(40);

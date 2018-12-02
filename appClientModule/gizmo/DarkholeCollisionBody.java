@@ -6,6 +6,11 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import javax.swing.JOptionPane;
+
+import UI.AnimationWindow;
+import UI.ApplicationWindow;
+
 public class DarkholeCollisionBody extends AbstractShape implements ICollisionBody{
 	
 	int count = 5;
@@ -41,7 +46,7 @@ public class DarkholeCollisionBody extends AbstractShape implements ICollisionBo
 		if (count < 5) return false;
 		double dis = Math.sqrt((location.x - ball.location.x) * (location.x - ball.location.x) + (location.y - ball.location.y) * (location.y - ball.location.y));
 		double precision = 10;
-		if (Math.abs(dis - ball.radius - this.size.width / 2) < precision && dis < ball.radius + this.size.width / 2) {
+		if (contains(ball.location)) {
 			count = 0;
 			changeDirect(ball);
 			return true;
@@ -52,7 +57,19 @@ public class DarkholeCollisionBody extends AbstractShape implements ICollisionBo
 	public void changeDirect(Ball ball) {
 		double angle1 = Math.atan((double)(ball.location.x - location.x)/(double)(ball.location.y - location.y));
 		double vx = (double) ball.velocity.x, vy = (double) ball.velocity.y;
-		System.out.println("GG");	
+		//System.out.println("GG");
+		//AnimationWindow.getInstance().continueGame();
+		Object[] options = {"继续游戏", "重新开始", "退出游戏"};
+		int res = JOptionPane.showOptionDialog(null, "GAME OVER, TRY AGAIN?", "GAME OVER",
+				JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+		if(res == 0){
+			AnimationWindow.getInstance().continueGame();
+		} else if(res == 1) {
+			AnimationWindow.getInstance().reStart();
+		} else {
+			System.exit(0);
+			return;
+		}
 	}
 
 	@Override
@@ -63,6 +80,8 @@ public class DarkholeCollisionBody extends AbstractShape implements ICollisionBo
 		} else {
 			return false;
 		}
+		
+		
 	}
 
 	@Override
