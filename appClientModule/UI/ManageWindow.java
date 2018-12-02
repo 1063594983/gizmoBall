@@ -8,6 +8,8 @@ import java.awt.Insets;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -18,6 +20,7 @@ import gizmo.Baffle;
 import gizmo.CircleCollisionBody;
 import gizmo.DarkholeCollisionBody;
 import gizmo.EchelonCollisionBody;
+import control.AddBaffleCommand;
 import control.AddBallCommand;
 import control.AddShapeCommand;
 import control.ChangeSizeCommand;
@@ -33,6 +36,7 @@ import gizmo.VerticalPipe;
 
 public class ManageWindow extends JPanel {
 	public ManageWindow() {
+		
 
 		ShapeBtn rectangle = new ShapeBtn("", new RectangleCollisionBody(), new AddShapeCommand());
 		ShapeBtn triangle = new ShapeBtn("",  new TriangleCollisionBody(), new AddShapeCommand());
@@ -44,7 +48,7 @@ public class ManageWindow extends JPanel {
 		ShapeBtn pipe1 = new ShapeBtn("", new VerticalPipe(), new AddShapeCommand());
 		ShapeBtn pipe2 = new ShapeBtn("", new RightPipe(), new AddShapeCommand());
 		ShapeBtn darkhole = new ShapeBtn("ÎüÊÕÆ÷",  new DarkholeCollisionBody(), new AddShapeCommand());
-		ShapeBtn baffle = new ShapeBtn("", new Baffle(), new AddShapeCommand());
+		ShapeBtn baffle = new ShapeBtn("", new Baffle(), new AddBaffleCommand());
 		ShapeBtn rotate = new ShapeBtn("Rotate", new RectangleCollisionBody(), new RotateCommand());
 		ShapeBtn setBall = new ShapeBtn("SetBall", new RectangleCollisionBody(), new AddBallCommand());
 		ShapeBtn resize = new ShapeBtn("Resize", new RectangleCollisionBody(), new ChangeSizeCommand(0));
@@ -63,6 +67,7 @@ public class ManageWindow extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				MainControl.setCommand(play.command);
 				MainControl.action();
+				AnimationWindow.getInstance().requestFocus();
 			}
 		});
 		
@@ -71,6 +76,7 @@ public class ManageWindow extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				MainControl.setCommand(pause.command);
 				MainControl.action();
+				AnimationWindow.getInstance().baffle.returnStand();
 			}
 		});
 

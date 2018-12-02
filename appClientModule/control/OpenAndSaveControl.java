@@ -38,6 +38,9 @@ public class OpenAndSaveControl {
 			while(i.hasNext()) {
 				str += i.next().getString();
 			}
+			str += AnimationWindow.getInstance().baffle.getString();
+			str += "ball " + AnimationWindow.getInstance().ball.location.x + " " + AnimationWindow.getInstance().ball.location.y 
+					+ " 8 8 0";
 			out.write(str);
 			out.close();
 		} catch (Exception e) {
@@ -83,6 +86,14 @@ public class OpenAndSaveControl {
 					shapes.add(shape);
 					break;
 				}
+				case "triangle" : {
+					AbstractShape shape = new TriangleCollisionBody();
+					shape.setPosition(p);
+					shape.setSize(d);
+					shape.setMode(mode);
+					shapes.add(shape);
+					break;
+				}
 				case "rectangle" : {
 					AbstractShape shape = new RectangleCollisionBody();
 					shape.setPosition(p);
@@ -113,6 +124,16 @@ public class OpenAndSaveControl {
 					shape.setSize(d);
 					shape.setMode(mode);
 					shapes.add(shape);
+					break;
+				}
+				case "baffle" : {
+					AnimationWindow.getInstance().baffle.setPosition(p);
+					AnimationWindow.getInstance().baffle.setSize(d);
+					break;
+				}
+				case "ball" : {
+					AnimationWindow.getInstance().ball.location = p;
+					AnimationWindow.getInstance().ball.radius = d.width;
 					break;
 				}
 				default : {

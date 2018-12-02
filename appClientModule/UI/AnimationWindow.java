@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -14,6 +16,7 @@ import javax.swing.Timer;
 
 
 import gizmo.*;
+import javafx.scene.input.KeyCode;
 import eventListener.*;
 
 public class AnimationWindow extends JComponent {
@@ -22,7 +25,10 @@ public class AnimationWindow extends JComponent {
 	private ArrayList<AbstractShape> shapes;
 	
 	//小球
-	private Ball ball;
+	public Ball ball;
+	
+	//挡板
+	public Baffle baffle;
 	
 	private int FPS = 60;
 	
@@ -47,6 +53,7 @@ public class AnimationWindow extends JComponent {
 	private AnimationWindow() {
 		shapes = new ArrayList<>();
 		ball = new Ball(this);
+		baffle = new Baffle();
 		
 		grade = 0;
 		
@@ -57,7 +64,19 @@ public class AnimationWindow extends JComponent {
 		//添加拖拽
 		this.addMouseMotionListener(itemEventListener);
 		//添加键盘
-		this.addKeyListener(itemEventListener);
+		this.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == baffle.keyCode) {
+					baffle.startRotate();
+				}		
+			}
+			@Override
+			public void keyReleased(KeyEvent e) {
+				baffle.returnStand();
+			}
+		});
+		
 		timer = new Timer(1000 / FPS, eventListener);
 		timer2 = new Timer(1000 / FPS, itemEventListener);
 		timer2.start();
@@ -71,6 +90,8 @@ public class AnimationWindow extends JComponent {
 		if(this.mode == true) {
 			//添加点击
 			this.addMouseListener(eventListener);
+			//添加按键
+			//this.addKeyListener(eventListener);
 			//requestFocus();
 			this.removeMouseListener(itemEventListener);
 			this.removeMouseMotionListener(itemEventListener);
@@ -80,6 +101,7 @@ public class AnimationWindow extends JComponent {
 		} else {
 			
 			this.removeMouseListener(eventListener);
+			//this.removeKeyListener(eventListener);
 			//添加点击
 			this.addMouseListener(itemEventListener);
 			//添加拖拽
@@ -98,6 +120,7 @@ public class AnimationWindow extends JComponent {
 			this.shapes.get(i).paint(g);
 		}
 		ball.paint(g);
+		baffle.paint(g);
 		g.setColor(Color.BLACK);
 		g.drawString("当前分数为" + this.grade, this.getWidth() - 100, 20);
 		//ball.move();
@@ -110,6 +133,7 @@ public class AnimationWindow extends JComponent {
 			 ((ICollisionBody) this.shapes.get(i)).handleCollision(ball);
 				//break;
 		}
+		baffle.isCollision(ball);
 		repaint();
 	}
 	
@@ -158,6 +182,11 @@ public class AnimationWindow extends JComponent {
 	
 	public void setShapes(ArrayList<AbstractShape> shapes) {
 		this.shapes = shapes;
+	}
+	
+	//设置挡板位置
+	public void setBaffleLoaction(Point p) {
+		this.baffle.setPosition(p);
 	}
 
 }

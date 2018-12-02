@@ -37,6 +37,7 @@ public class CircleCollisionBody extends AbstractShape implements ICollisionBody
 
 	@Override
 	public boolean isCollision(Ball ball) {
+		
 		count++;
 		if (count < 5) return false;
 		double dis = Math.sqrt((location.x - ball.location.x) * (location.x - ball.location.x) + (location.y - ball.location.y) * (location.y - ball.location.y));
@@ -47,11 +48,22 @@ public class CircleCollisionBody extends AbstractShape implements ICollisionBody
 			return true;
 		}
 		return false;
+		
+		/*
+		Point p = new Point(ball.location.x + ball.velocity.x, ball.location.y + ball.velocity.y);
+		if(this.contains(p)) {
+			changeDirect(ball);
+			return true;
+		}
+		return false;
+		*/
 	}
 
 	public void changeDirect(Ball ball) {
 		double angle1 = Math.atan((double)(ball.location.x - location.x)/(double)(ball.location.y - location.y));
 		double vx = (double) ball.velocity.x, vy = (double) ball.velocity.y;
+		ball.location.x = (int) (location.x + this.size.height * Math.cos(angle1));
+		ball.location.y = (int) (location.y + this.size.height * Math.sin(angle1));
 		//double转为int，会损失精度，即为考虑摩擦
 		ball.velocity.x = (int) (vx * (Math.cos(angle1) * Math.cos(angle1) - Math.sin(angle1) * Math.sin(angle1)) - 2 * vy * Math.sin(angle1) * Math.cos(angle1));
 		ball.velocity.y = (int) (vy * (Math.sin(angle1) * Math.sin(angle1) - Math.cos(angle1) * Math.cos(angle1)) - 2 * vx * Math.sin(angle1) * Math.cos(angle1));
@@ -59,12 +71,18 @@ public class CircleCollisionBody extends AbstractShape implements ICollisionBody
 
 	@Override
 	public boolean contains(Point p) {
+		/*
 		if(new Rectangle(location.x - this.size.width / 2, location.y - this.size.height / 2, 
 				size.width, size.height).contains(p)) {
 			return true;
 		} else {
 			return false;
 		}
+		*/
+		if(p.distance(location) <= this.size.width) {
+			return true;
+		}
+		return false;
 	}
 
 	@Override

@@ -13,11 +13,14 @@ public class VerticalPipe extends AbstractShape implements ICollisionBody {
 	RectangleCollisionBody rect1;
 	RectangleCollisionBody rect2;
 	
+	int count = 0;
+	
 	
 	public VerticalPipe() {
 		this.size = new Dimension(50, 50);
 		this.name = "VerticalPipe";
-		this.color = new Color(248, 206, 204);
+		//this.color = new Color(248, 206, 204);
+		this.color = Color.BLACK;
 		this.pipeWidth = 10;
 		rect1 = new RectangleCollisionBody();
 		rect2 = new RectangleCollisionBody();
@@ -34,19 +37,20 @@ public class VerticalPipe extends AbstractShape implements ICollisionBody {
 	@Override
 	public boolean isCollision(Ball ball) {
 		if(rect1.isCollision(ball) || rect2.isCollision(ball)) {
-			/*
-			if (ball.velocity.y > 0) {
-				ball.velocity.y++;
-			} else if (ball.velocity.y < 0) {
-				ball.velocity.y--;
+			count++;
+			if(count == 5) {
+				if(ball.velocity.x > 0) {
+					ball.velocity.x--;
+				} else if(ball.velocity.x < 0) {
+					ball.velocity.x++;
+				}
+				if(ball.velocity.y > 0) {
+					ball.velocity.y--;
+				} else if(ball.velocity.y < 0) {
+					ball.velocity.y++;
+				}
+				count = 0;
 			}
-
-			if (ball.velocity.x > 0) {
-				ball.velocity.x++;
-			} else if (ball.velocity.x < 0) {
-				ball.velocity.x--;
-			}
-			*/
 			return true;
 		}
 		return false;
@@ -67,13 +71,16 @@ public class VerticalPipe extends AbstractShape implements ICollisionBody {
 		}
 		rect1.setColor(this.color);
 		rect2.setColor(this.color);
+		
 		/*
 		g.setColor(this.color);
-		g.fillRect(location.x, location.y, pipeWidth, size.height);
-		g.fillRect(location.x+size.width - pipeWidth, location.y, pipeWidth, size.height);
+		g.fillRect(rect1.location.x, rect1.location.y, rect1.size.width, rect1.size.height);
+		g.fillRect(rect2.location.x, rect2.location.y, rect2.size.width, rect2.size.height);
 		*/
+		
 		rect1.paint(g);
 		rect2.paint(g);
+		
 	}
 
 	@Override

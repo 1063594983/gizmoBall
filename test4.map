@@ -1,0 +1,5 @@
+VerticalPipe 67 120 71 695 0
+VerticalPipe 361 514 93 504 1
+triangle 22 562 86 96 3
+baffle -100 -100 100 50 0
+ball 95 334 10 10 0

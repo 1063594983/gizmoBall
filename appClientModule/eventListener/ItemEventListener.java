@@ -73,6 +73,10 @@ public class ItemEventListener extends MouseAdapter implements MouseMotionListen
 				AnimationWindow.getInstance().setBallLocation(new Point(e.getX(), e.getY()));
 				break;
 			}
+			case "addBaffle": {
+				AnimationWindow.getInstance().setBaffleLoaction(new Point(e.getX(), e.getY()));
+				break;
+			}
 			case "rotate" : {
 				MainControl.getCommand().shape = this.shape;
 				break;
@@ -94,6 +98,10 @@ public class ItemEventListener extends MouseAdapter implements MouseMotionListen
 		ArrayList <AbstractShape> shapes = animationWindow.getShapes();
 		//oldPosition = new Point(e.getX(), e.getY());
 		for(int i = 0; i < shapes.size(); i++) {
+			if(AnimationWindow.getInstance().baffle.contains(new Point(e.getX(), e.getY()))) {
+				this.shape = AnimationWindow.getInstance().baffle;
+				break;
+			}
 			if(shapes.get(i).contains(new Point(e.getX(), e.getY()))) {
 				this.shape = shapes.get(i);
 				break;
